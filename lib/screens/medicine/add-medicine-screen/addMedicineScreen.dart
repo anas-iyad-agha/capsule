@@ -1,7 +1,5 @@
 import 'package:Capsule/providers/medicineReminderProvider.dart';
-import 'package:Capsule/screens/components/custom-drop-down-menu.dart';
 import 'package:Capsule/screens/medicine/add-medicine-screen/components/custom_input.dart';
-import 'package:Capsule/test-data/medicine-data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -39,25 +37,34 @@ class AddMedicineScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CustomDropDownMenu<String>(
-                width: MediaQuery.sizeOf(context).width,
-                label: 'اسم الدواء',
+              CustomInput(
+                labelText: 'اسم الدواء',
                 controller: _nameController,
-                dropDownMenuEntries: [
-                  for (String medicine in medicineNames)
-                    DropdownMenuEntry(value: medicine, label: medicine),
-                ],
-                filterCallBack: (entries, value) {
-                  return entries
-                      .where((entry) => entry.value.contains(value))
-                      .toList();
-                },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'الرجاء ادخال اسم الدواء';
                   }
                 },
               ),
+              // CustomDropDownMenu<String>(
+              //   width: MediaQuery.sizeOf(context).width,
+              //   label: 'اسم الدواء',
+              //   controller: _nameController,
+              //   dropDownMenuEntries: [
+              //     for (String medicine in medicineNames)
+              //       DropdownMenuEntry(value: medicine, label: medicine),
+              //   ],
+              //   filterCallBack: (entries, value) {
+              //     return entries
+              //         .where((entry) => entry.value.contains(value))
+              //         .toList();
+              //   },
+              //   validator: (value) {
+              //     if (value == null || value.isEmpty) {
+              //       return 'الرجاء ادخال اسم الدواء';
+              //     }
+              //   },
+              // ),
               SizedBox(height: 24),
               CustomInput(
                 keyboardType: TextInputType.multiline,
