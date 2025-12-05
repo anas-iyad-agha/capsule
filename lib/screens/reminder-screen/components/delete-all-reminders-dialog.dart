@@ -25,6 +25,7 @@ class DeleteAllRemindersDialog extends StatelessWidget {
                 MaterialButton(
                   color: Colors.cyan,
                   onPressed: () async {
+                    Navigator.pop(context);
                     await Provider.of<MedicineReminderProvider>(
                       context,
                       listen: false,
