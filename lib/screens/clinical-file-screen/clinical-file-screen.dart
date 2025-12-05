@@ -11,6 +11,16 @@ class ClinicalFileScreen extends StatefulWidget {
 class _ClinicalFileScreenState extends State<ClinicalFileScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Column(
+        children: [
+          GestureDetector(child: Text('معلومات المريض')),
+          GestureDetector(child: Text('الأدوية')),
+          GestureDetector(child: Text('الأمراض')),
+          GestureDetector(child: Text('العمليات')),
+          GestureDetector(child: Text('التحاليل')),
+        ],
+      ),
+    );
   }
 }

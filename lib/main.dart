@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:Capsule/local-db/localDB.dart';
 import 'package:Capsule/notification/notification.dart';
 import 'package:Capsule/providers/medicineReminderProvider.dart';
+import 'package:Capsule/providers/patien-info-probider.dart';
 import 'package:Capsule/screens/about-screen/about-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/clinical-file-screen.dart';
 import 'package:Capsule/screens/landing/landing-screen.dart';
@@ -81,6 +82,7 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => MedicineReminderProvider()),
+        ChangeNotifierProvider(create: (_) => PatientInfoProvider()),
       ],
       child: MaterialApp(
         navigatorKey: navigatorKey,
