@@ -19,10 +19,11 @@ class _RemindersScreenState extends State<RemindersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.greenAccent,
+      backgroundColor: Colors.cyan,
       appBar: AppBar(
         title: Text('التنبيهات'),
-        backgroundColor: Colors.greenAccent,
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.cyan,
         actions: [
           MenuAnchor(
             menuChildren: [
@@ -62,8 +63,7 @@ class _RemindersScreenState extends State<RemindersScreen> {
             showDialog(context: context, builder: (_) => NoMedicineDialog());
           }
         },
-        backgroundColor: Colors.greenAccent,
-        foregroundColor: Colors.black,
+        backgroundColor: Colors.cyan,
         label: Text('أضف منبها'),
         icon: Icon(Icons.timer_outlined),
       ),

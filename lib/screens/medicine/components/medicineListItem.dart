@@ -37,7 +37,6 @@ class MedicineListItem extends StatelessWidget {
           trailing: MenuAnchor(
             menuChildren: [
               MenuItemButton(
-                child: Text('تعديل'),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -47,9 +46,9 @@ class MedicineListItem extends StatelessWidget {
                   );
                 },
                 leadingIcon: Icon(Icons.edit),
+                child: Text('تعديل'),
               ),
               MenuItemButton(
-                child: Text('حذف'),
                 onPressed: () {
                   showDialog(
                     context: context,
@@ -57,6 +56,7 @@ class MedicineListItem extends StatelessWidget {
                   );
                 },
                 leadingIcon: Icon(Icons.delete),
+                child: Text('حذف'),
               ),
             ],
             builder: (_, controller, _) => IconButton(

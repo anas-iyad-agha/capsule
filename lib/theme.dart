@@ -34,6 +34,10 @@ ColorScheme myColorScheme = const ColorScheme(
 ThemeData _buildCustomTheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
+    appBarTheme: AppBarTheme(
+      foregroundColor: Colors.white,
+      backgroundColor: Colors.cyan,
+    ),
     hintColor: MyColors.lightRed,
     primaryColor: MyColors.lightBlue,
     scaffoldBackgroundColor: Colors.white,

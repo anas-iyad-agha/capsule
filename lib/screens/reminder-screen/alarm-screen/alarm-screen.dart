@@ -73,13 +73,13 @@ class _AlarmScreenState extends State<AlarmScreen> {
                       Expanded(
                         child: Container(
                           padding: EdgeInsets.all(8),
-                          color: Color(0xffDCFCE7),
+                          color: Colors.cyan.withAlpha(60),
                           width: width,
                           alignment: Alignment.center,
                           child: FaIcon(
                             FontAwesomeIcons.pills,
                             size: 100,
-                            color: Color(0xff15803D),
+                            color: Colors.cyan,
                           ),
                         ),
                       ),
@@ -118,18 +118,20 @@ class _AlarmScreenState extends State<AlarmScreen> {
                         listen: false,
                       ).setIsTaken(reminder.isTaken, reminder.id!);
                     },
-                    fillColor: Color(0xff13EC5B),
+                    fillColor: Colors.cyan,
                     padding: EdgeInsets.all(8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.baseline,
                       textBaseline: TextBaseline.ideographic,
                       children: [
-                        Icon(Icons.check_circle_outline),
+                        Icon(Icons.check_circle_outline, color: Colors.white),
                         SizedBox(width: 8),
                         Text(
                           'أخذ الدواء',
-                          style: Theme.of(context).textTheme.titleLarge,
+                          style: Theme.of(
+                            context,
+                          ).textTheme.titleLarge!.copyWith(color: Colors.white),
                         ),
                       ],
                     ),

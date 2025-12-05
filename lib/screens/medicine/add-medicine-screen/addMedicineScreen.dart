@@ -26,7 +26,7 @@ class AddMedicineScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('إضافة دواء'),
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.cyan,
         foregroundColor: Colors.white,
       ),
       body: Container(
@@ -46,25 +46,6 @@ class AddMedicineScreen extends StatelessWidget {
                   }
                 },
               ),
-              // CustomDropDownMenu<String>(
-              //   width: MediaQuery.sizeOf(context).width,
-              //   label: 'اسم الدواء',
-              //   controller: _nameController,
-              //   dropDownMenuEntries: [
-              //     for (String medicine in medicineNames)
-              //       DropdownMenuEntry(value: medicine, label: medicine),
-              //   ],
-              //   filterCallBack: (entries, value) {
-              //     return entries
-              //         .where((entry) => entry.value.contains(value))
-              //         .toList();
-              //   },
-              //   validator: (value) {
-              //     if (value == null || value.isEmpty) {
-              //       return 'الرجاء ادخال اسم الدواء';
-              //     }
-              //   },
-              // ),
               SizedBox(height: 24),
               CustomInput(
                 keyboardType: TextInputType.multiline,
@@ -149,7 +130,7 @@ class AddMedicineScreen extends StatelessWidget {
                         Navigator.pop(context);
                       }
                     },
-                    color: Colors.teal,
+                    color: Colors.cyan,
                     textColor: Colors.white,
                     child: Text('إضافة'),
                   ),

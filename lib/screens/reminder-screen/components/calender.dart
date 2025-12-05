@@ -46,17 +46,29 @@ class _CalenderState extends State<Calender> {
               CalendarFormat.week: 'أسبوع',
             },
             eventLoader: provider.getEventsForDay,
+            headerStyle: HeaderStyle(
+              formatButtonTextStyle: TextStyle(color: Colors.white),
+              formatButtonDecoration: BoxDecoration(
+                border: Border.fromBorderSide(BorderSide(color: Colors.white)),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              titleTextStyle: TextStyle(color: Colors.white),
+              rightChevronIcon: Icon(Icons.chevron_right, color: Colors.white),
+              leftChevronIcon: Icon(Icons.chevron_left, color: Colors.white),
+            ),
             calendarStyle: const CalendarStyle(
               selectedDecoration: BoxDecoration(
-                color: Colors.teal,
+                color: Colors.cyanAccent,
                 shape: BoxShape.circle,
               ),
               todayDecoration: BoxDecoration(
-                color: Colors.tealAccent,
+                color: Colors.lightBlueAccent,
                 shape: BoxShape.circle,
               ),
-              todayTextStyle: TextStyle(color: Colors.black),
-              selectedTextStyle: TextStyle(color: Colors.white),
+              todayTextStyle: TextStyle(color: Colors.white),
+              selectedTextStyle: TextStyle(color: Colors.black),
+              defaultTextStyle: TextStyle(color: Colors.white),
+              weekendTextStyle: TextStyle(color: Colors.white),
             ),
             onDaySelected: provider.onDaySelected,
             onFormatChanged: (format) {

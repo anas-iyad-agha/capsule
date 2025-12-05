@@ -32,7 +32,7 @@ class DeleteMedicineDialog extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 MaterialButton(
-                  color: Colors.teal,
+                  color: Colors.cyan,
                   onPressed: () async {
                     await Provider.of<MedicineReminderProvider>(
                       context,

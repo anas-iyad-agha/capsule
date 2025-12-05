@@ -26,11 +26,11 @@ class _MedicineScreenState extends State<MedicineScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal,
+      backgroundColor: Colors.cyan,
       appBar: AppBar(
         foregroundColor: Colors.white,
         title: Text('أدويتي'),
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.cyan,
       ),
       body: Column(
         children: [
@@ -83,7 +83,7 @@ class _MedicineScreenState extends State<MedicineScreen> {
         onPressed: () {
           Navigator.of(context).pushNamed(AddMedicineScreen.route);
         },
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.cyan,
         label: Text('أضف دواء'),
         icon: Icon(Icons.add),
       ),

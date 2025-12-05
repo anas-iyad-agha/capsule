@@ -38,7 +38,7 @@ class _EditMedicineScreenState extends State<EditMedicineScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('تعديل الدواء'),
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.cyan,
         foregroundColor: Colors.white,
       ),
       body: Padding(
@@ -130,7 +130,7 @@ class _EditMedicineScreenState extends State<EditMedicineScreen> {
                         Navigator.pop(context);
                       }
                     },
-                    color: Colors.teal,
+                    color: Colors.cyan,
                     textColor: Colors.white,
                     child: Text('تأكيد'),
                   ),

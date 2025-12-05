@@ -47,7 +47,8 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('إضافة منبه'),
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: Colors.cyan,
+        foregroundColor: Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -156,7 +157,7 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
                             await provider.fetchData();
                           }
                         },
-                        color: Colors.teal,
+                        color: Colors.cyan,
                         textColor: Colors.white,
                         child: Text('اضافة'),
                       ),
