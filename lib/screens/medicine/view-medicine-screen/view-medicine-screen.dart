@@ -95,12 +95,6 @@ class ViewMedicineScreen extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    InfoCard(
-                      title: 'المتوفر',
-                      info: '${formatDouble(medicine.currentSupply)} pills',
-                      color: MyColors.lightBlue,
-                      iconData: Icons.assignment_turned_in,
-                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [

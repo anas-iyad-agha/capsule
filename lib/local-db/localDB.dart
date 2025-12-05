@@ -15,7 +15,7 @@ class Localdb {
       version: 1,
       onCreate: (db, version) async {
         await db.execute('''
-              CREATE TABLE IF NOT EXISTS medicine (id INTEGER PRIMARY KEY, name TEXT, description TEXT, current_supply REAL, dose REAL, strength REAL);
+              CREATE TABLE IF NOT EXISTS medicine (id INTEGER PRIMARY KEY, name TEXT, description TEXT, dose REAL, strength REAL);
           ''');
         await db.execute('''
               CREATE TABLE IF NOT EXISTS reminders (id INTEGER PRIMARY KEY AUTOINCREMENT, medicine_id INTEGER NOT NULL, medicine_name TEXT NOT NULL, date_time INTEGER NOT NULL, label TEXT NOT NULL,  is_taken INTEGER NOT NULL, FOREIGN KEY (medicine_id) REFERENCES medicines (id) ON UPDATE NO ACTION ON DELETE CASCADE)

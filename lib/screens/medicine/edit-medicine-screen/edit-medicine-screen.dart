@@ -20,8 +20,6 @@ class _EditMedicineScreenState extends State<EditMedicineScreen> {
 
   final _descriptionController = TextEditingController();
 
-  final _currentSupplyController = TextEditingController();
-
   final _doseController = TextEditingController();
 
   final _strengthController = TextEditingController();
@@ -30,7 +28,6 @@ class _EditMedicineScreenState extends State<EditMedicineScreen> {
   void initState() {
     _nameController.text = widget.medicine.name;
     _descriptionController.text = widget.medicine.description;
-    _currentSupplyController.text = widget.medicine.currentSupply.toString();
     _doseController.text = widget.medicine.dose.toString();
     _strengthController.text = widget.medicine.strength.toString();
     super.initState();
@@ -67,21 +64,6 @@ class _EditMedicineScreenState extends State<EditMedicineScreen> {
                 controller: _descriptionController,
                 maxLines: null,
                 labelText: 'الوصف',
-              ),
-              SizedBox(height: 24),
-              CustomInput(
-                labelText: 'الكمية الحالية',
-                suffixText: 'حبة',
-                controller: _currentSupplyController,
-                keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value == null ||
-                      value.isEmpty ||
-                      double.tryParse(value).runtimeType != double) {
-                    return 'الرجاء ادخال الكمية الحالية';
-                  }
-                  return null;
-                },
               ),
               SizedBox(height: 24),
               Row(
@@ -138,9 +120,6 @@ class _EditMedicineScreenState extends State<EditMedicineScreen> {
                                 id: widget.medicine.id,
                                 name: _nameController.text,
                                 description: _descriptionController.text,
-                                currentSupply: double.parse(
-                                  _currentSupplyController.text,
-                                ),
                                 dose: double.parse(_doseController.text),
                                 strength: double.parse(
                                   _strengthController.text,
