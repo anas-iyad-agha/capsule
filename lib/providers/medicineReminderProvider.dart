@@ -133,14 +133,22 @@ class MedicineReminderProvider with ChangeNotifier {
   }
 
   Future deleteMedicine(int medicineId) async {
-    int rowCount = await Localdb.db!.delete(
+    int effectedMedicine = await Localdb.db!.delete(
       'medicine',
       where: 'id = $medicineId',
     );
 
-    if (rowCount != 1) {
+    reminders.forEach((reminder) {
+      if (reminder.medicineId == medicineId) {
+        Alarm.stop(reminder.id!);
+      }
+    });
+
+    await Localdb.db!.delete('reminders', where: 'medicine_id = $medicineId');
+
+    if (effectedMedicine != 1) {
       throw Exception(
-        'ERROR when deleting from data base table :: medicine, id = $medicineId, effected rows:: $rowCount',
+        'ERROR when deleting from data base table :: medicine, id = $medicineId, effected rows:: $effectedMedicine',
       );
     }
     medicines.removeWhere((medicine) => medicine.id == medicineId);
