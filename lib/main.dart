@@ -5,7 +5,6 @@ import 'package:Capsule/notification/notification.dart';
 import 'package:Capsule/providers/medicineReminderProvider.dart';
 import 'package:Capsule/providers/reports-provider.dart';
 import 'package:Capsule/screens/about-screen/about-screen.dart';
-import 'package:Capsule/screens/ddi-test-screen/ddiTestScreen.dart';
 import 'package:Capsule/screens/landing/landing-screen.dart';
 import 'package:Capsule/screens/main-screen/main-screen.dart';
 import 'package:Capsule/screens/medicine/add-medicine-screen/addMedicineScreen.dart';
@@ -102,7 +101,6 @@ class _MyAppState extends State<MyApp> {
         routes: {
           MainScreen.route: (_) => MainScreen(),
           AboutScreen.route: (_) => AboutScreen(),
-          DDITestScreen.route: (_) => DDITestScreen(),
           MedicineScreen.route: (_) => MedicineScreen(),
           AddMedicineScreen.route: (_) => AddMedicineScreen(),
           RemindersScreen.route: (_) => RemindersScreen(),

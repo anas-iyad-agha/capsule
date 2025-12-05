@@ -1,5 +1,4 @@
 import 'package:Capsule/screens/about-screen/about-screen.dart';
-import 'package:Capsule/screens/ddi-test-screen/ddiTestScreen.dart';
 import 'package:Capsule/screens/main-screen/components/service-navigation-card.dart';
 import 'package:Capsule/screens/main-screen/components/today-schedule.dart';
 import 'package:Capsule/screens/medicine/medicine-screen.dart';
@@ -57,15 +56,6 @@ class MainScreen extends StatelessWidget {
                     icon: Icons.bar_chart_outlined,
                     color: Colors.cyan,
                     description: 'تفقد تقاريرك الطبية',
-                  ),
-
-                  // SizedBox(width: 16),
-                  ServiceNavigationCard(
-                    route: DDITestScreen.route,
-                    title: 'التفاعلات الدوائبة',
-                    description: 'تحقق من الاعراض الناجمة عن تفاعل الادوية',
-                    icon: Icons.science_outlined,
-                    color: Colors.cyan,
                   ),
                 ],
               ),
