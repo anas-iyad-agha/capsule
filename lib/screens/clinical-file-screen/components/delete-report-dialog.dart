@@ -1,6 +1,6 @@
 import 'package:Capsule/models/report.dart';
 import 'package:Capsule/providers/reports-provider.dart';
-import 'package:Capsule/screens/reports-screen/reportsScreen.dart';
+import 'package:Capsule/screens/clinical-file-screen/reportsScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -40,7 +40,8 @@ class DeleteReportDialog extends StatelessWidget {
                     ).removeReport(report.id!);
                     Navigator.popUntil(
                       context,
-                      (route) => route.settings.name == ReportsScreen.route,
+                      (route) =>
+                          route.settings.name == ClinicalFileScreen.route,
                     );
                   },
                   child: Text('نعم', style: TextStyle(color: Colors.white)),

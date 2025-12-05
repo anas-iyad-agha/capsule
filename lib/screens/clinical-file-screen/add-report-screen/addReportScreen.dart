@@ -1,8 +1,8 @@
 import 'package:Capsule/models/report.dart';
 import 'package:Capsule/providers/reports-provider.dart';
+import 'package:Capsule/screens/clinical-file-screen/add-report-screen/components/add_attachment_button.dart';
+import 'package:Capsule/screens/clinical-file-screen/add-report-screen/components/attachments_list.dart';
 import 'package:Capsule/screens/medicine/add-medicine-screen/components/custom_input.dart';
-import 'package:Capsule/screens/reports-screen/add-report-screen/components/add_attachment_button.dart';
-import 'package:Capsule/screens/reports-screen/add-report-screen/components/attachments_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

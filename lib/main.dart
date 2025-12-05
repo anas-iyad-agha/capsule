@@ -5,6 +5,8 @@ import 'package:Capsule/notification/notification.dart';
 import 'package:Capsule/providers/medicineReminderProvider.dart';
 import 'package:Capsule/providers/reports-provider.dart';
 import 'package:Capsule/screens/about-screen/about-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/add-report-screen/addReportScreen.dart';
+import 'package:Capsule/screens/clinical-file-screen/reportsScreen.dart';
 import 'package:Capsule/screens/landing/landing-screen.dart';
 import 'package:Capsule/screens/main-screen/main-screen.dart';
 import 'package:Capsule/screens/medicine/add-medicine-screen/addMedicineScreen.dart';
@@ -12,8 +14,6 @@ import 'package:Capsule/screens/medicine/medicine-screen.dart';
 import 'package:Capsule/screens/reminder-screen/addReminderScreen/addReminderScreen.dart';
 import 'package:Capsule/screens/reminder-screen/alarm-screen/alarm-screen.dart';
 import 'package:Capsule/screens/reminder-screen/reminders-screen.dart';
-import 'package:Capsule/screens/reports-screen/add-report-screen/addReportScreen.dart';
-import 'package:Capsule/screens/reports-screen/reportsScreen.dart';
 import 'package:Capsule/theme.dart';
 import 'package:alarm/alarm.dart';
 import 'package:flutter/material.dart';
@@ -105,7 +105,7 @@ class _MyAppState extends State<MyApp> {
           AddMedicineScreen.route: (_) => AddMedicineScreen(),
           RemindersScreen.route: (_) => RemindersScreen(),
           AddReminderScreen.route: (_) => AddReminderScreen(),
-          ReportsScreen.route: (_) => ReportsScreen(),
+          ClinicalFileScreen.route: (_) => ClinicalFileScreen(),
           AddReportScreen.route: (_) => AddReportScreen(),
           LandingScreen.route: (_) => LandingScreen(),
         },

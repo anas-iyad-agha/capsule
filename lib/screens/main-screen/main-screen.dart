@@ -1,9 +1,9 @@
 import 'package:Capsule/screens/about-screen/about-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/reportsScreen.dart';
 import 'package:Capsule/screens/main-screen/components/service-navigation-card.dart';
 import 'package:Capsule/screens/main-screen/components/today-schedule.dart';
 import 'package:Capsule/screens/medicine/medicine-screen.dart';
 import 'package:Capsule/screens/reminder-screen/reminders-screen.dart';
-import 'package:Capsule/screens/reports-screen/reportsScreen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatelessWidget {
@@ -51,7 +51,7 @@ class MainScreen extends StatelessWidget {
                     description: 'أدر تنبيهاتك',
                   ),
                   ServiceNavigationCard(
-                    route: ReportsScreen.route,
+                    route: ClinicalFileScreen.route,
                     title: 'التقارير',
                     icon: Icons.bar_chart_outlined,
                     color: Colors.cyan,

@@ -1,7 +1,7 @@
 import 'package:Capsule/models/report.dart';
-import 'package:Capsule/screens/reports-screen/components/delete-report-dialog.dart';
-import 'package:Capsule/screens/reports-screen/edit-report-screen/edit-report-screnn.dart';
-import 'package:Capsule/screens/reports-screen/view-report-screen/view-report-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/components/delete-report-dialog.dart';
+import 'package:Capsule/screens/clinical-file-screen/edit-report-screen/edit-report-screnn.dart';
+import 'package:Capsule/screens/clinical-file-screen/view-report-screen/view-report-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

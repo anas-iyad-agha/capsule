@@ -1,18 +1,18 @@
 import 'package:Capsule/providers/reports-provider.dart';
+import 'package:Capsule/screens/clinical-file-screen/components/report-list-item.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
-import 'package:Capsule/screens/reports-screen/components/report-list-item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ReportsScreen extends StatefulWidget {
-  static const route = '/reports';
-  const ReportsScreen({super.key});
+class ClinicalFileScreen extends StatefulWidget {
+  static const route = '/clinical-file';
+  const ClinicalFileScreen({super.key});
 
   @override
-  State<ReportsScreen> createState() => _ReportsScreenState();
+  State<ClinicalFileScreen> createState() => _ClinicalFileScreenState();
 }
 
-class _ReportsScreenState extends State<ReportsScreen> {
+class _ClinicalFileScreenState extends State<ClinicalFileScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
