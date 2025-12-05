@@ -32,6 +32,7 @@ class TextSection extends StatelessWidget {
                 Text(
                   paragraph,
                   softWrap: true,
+                  textAlign: TextAlign.justify,
                   style: const TextStyle(
                     fontSize: 16,
                     wordSpacing: 0.5,

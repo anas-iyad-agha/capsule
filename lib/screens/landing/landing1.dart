@@ -24,9 +24,8 @@ class Landing1 extends StatelessWidget {
                 const CustomImage(imagePath: 'assets/images/landing1.png'),
                 SizedBox(height: deviceHeight * 0.05),
                 const TextSection(
-                  'تحكم في ادويتك',
-                  'تطبيق سهل الاستخدام ومعتمد يساعدك على تذكر مواعيد أدويتك في الوقت المناسب.',
-                  // 'An easy-to-use and reliable app that helps you remember to take your Medicine at the right time',
+                  'تطبيق كبسولة',
+                  'تطبيق لإدارة الملف السريري وتنبيهات مواعيد الدواء.',
                 ),
               ],
             ),

@@ -22,12 +22,11 @@ class Landing2 extends StatelessWidget {
               shrinkWrap: true,
               children: [
                 const TextSection(
-                  'تنبيهات الادوية',
-                  'يمكنك ضبط تنبيهات لجميع الادوية وتسجيل الادوية التي استخدمتها.',
-                  // 'For all of your medications with a logbook for skipped and confirmed intakes.',
+                  'الجامعة الدولية الخاصة للعلوم والتقنية',
+                  'صُمم التطبيق خصيصًا ليخدم الأهداف الأكاديمية والبحثية لـالجامعة الدولية الخاصة في مجال تعزيز الرعاية الصحية الرقمية وابتكار حلول تكنولوجية عملية تُحسن من جودة حياة المريض.',
                 ),
                 SizedBox(height: deviceHeight * 0.05),
-                const CustomImage(imagePath: 'assets/images/landing2.png'),
+                const CustomImage(imagePath: 'assets/images/IUST-logo.png'),
               ],
             ),
           ),

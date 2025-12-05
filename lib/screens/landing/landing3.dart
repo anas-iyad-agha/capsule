@@ -9,7 +9,7 @@ class Landing3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double deviceHeight =
+    final deviceHeight =
         MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
 
     return Column(
@@ -23,9 +23,8 @@ class Landing3 extends StatelessWidget {
                 const CustomImage(imagePath: 'assets/images/landing3.png'),
                 SizedBox(height: deviceHeight * 0.05),
                 const TextSection(
-                  'التقارير الطبية',
+                  'اشراف الدكتور',
                   'قم بتسجيل تقاريرك الطبية ومتابعتها من اجل انشاء ملف طبي متكامل.',
-                  // 'Track your supply, dose, and measurements in a comprehensive health journal. ',
                 ),
               ],
             ),
