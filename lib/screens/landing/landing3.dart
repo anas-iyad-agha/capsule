@@ -14,7 +14,6 @@ class Landing3 extends StatelessWidget {
 
     return Column(
       children: [
-        //skipButton,
         Expanded(
           child: Center(
             child: ListView(
