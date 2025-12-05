@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 class ServiceNavigationCard extends StatelessWidget {
   final String route;
   final IconData icon;
-  final Color color;
   final String title;
   final String description;
+  final double? width;
   const ServiceNavigationCard({
     required this.title,
     required this.route,
     required this.description,
     required this.icon,
-    required this.color,
+    this.width,
     super.key,
   });
 
@@ -27,7 +27,7 @@ class ServiceNavigationCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(icon, color: color),
+              Icon(icon, color: Colors.cyan),
               Text(title, style: Theme.of(context).textTheme.titleMedium),
               Text(description),
             ],

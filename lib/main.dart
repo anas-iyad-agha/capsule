@@ -6,7 +6,7 @@ import 'package:Capsule/providers/medicineReminderProvider.dart';
 import 'package:Capsule/providers/reports-provider.dart';
 import 'package:Capsule/screens/about-screen/about-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/add-report-screen/addReportScreen.dart';
-import 'package:Capsule/screens/clinical-file-screen/reportsScreen.dart';
+import 'package:Capsule/screens/clinical-file-screen/clinical-file-screen.dart';
 import 'package:Capsule/screens/landing/landing-screen.dart';
 import 'package:Capsule/screens/main-screen/main-screen.dart';
 import 'package:Capsule/screens/medicine/add-medicine-screen/addMedicineScreen.dart';

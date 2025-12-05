@@ -1,6 +1,6 @@
 import 'package:Capsule/models/report.dart';
 import 'package:Capsule/providers/reports-provider.dart';
-import 'package:Capsule/screens/clinical-file-screen/reportsScreen.dart';
+import 'package:Capsule/screens/clinical-file-screen/clinical-file-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

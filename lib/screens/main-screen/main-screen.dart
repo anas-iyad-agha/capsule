@@ -1,5 +1,5 @@
 import 'package:Capsule/screens/about-screen/about-screen.dart';
-import 'package:Capsule/screens/clinical-file-screen/reportsScreen.dart';
+import 'package:Capsule/screens/clinical-file-screen/clinical-file-screen.dart';
 import 'package:Capsule/screens/main-screen/components/service-navigation-card.dart';
 import 'package:Capsule/screens/main-screen/components/today-schedule.dart';
 import 'package:Capsule/screens/medicine/medicine-screen.dart';
@@ -29,33 +29,39 @@ class MainScreen extends StatelessWidget {
           children: [
             Expanded(flex: 2, child: TodaySchedule()),
             Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                shrinkWrap: true,
-                childAspectRatio: 1.6,
-
-                physics: NeverScrollableScrollPhysics(),
+              child: Column(
                 children: [
-                  ServiceNavigationCard(
-                    route: MedicineScreen.route,
-                    title: 'أدويتي',
-                    description: 'تابع جميع ادويتك',
-                    icon: Icons.medication_outlined,
-                    color: Colors.teal,
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ServiceNavigationCard(
+                          route: MedicineScreen.route,
+                          title: 'أدويتي',
+                          description: 'تابع جميع ادويتك',
+                          icon: Icons.medication_outlined,
+                        ),
+                      ),
+                      Expanded(
+                        child: ServiceNavigationCard(
+                          route: RemindersScreen.route,
+                          title: 'التنبيهات',
+                          icon: Icons.notifications_on_outlined,
+                          description: 'أدر تنبيهاتك',
+                        ),
+                      ),
+                    ],
                   ),
-                  ServiceNavigationCard(
-                    route: RemindersScreen.route,
-                    title: 'التنبيهات',
-                    icon: Icons.notifications_on_outlined,
-                    color: Colors.greenAccent,
-                    description: 'أدر تنبيهاتك',
-                  ),
-                  ServiceNavigationCard(
-                    route: ClinicalFileScreen.route,
-                    title: 'التقارير',
-                    icon: Icons.bar_chart_outlined,
-                    color: Colors.cyan,
-                    description: 'تفقد تقاريرك الطبية',
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ServiceNavigationCard(
+                          route: ClinicalFileScreen.route,
+                          title: 'الملف السريري',
+                          icon: Icons.bar_chart_outlined,
+                          description: 'تابع ملف المريض ومعلوماته الصحية',
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
