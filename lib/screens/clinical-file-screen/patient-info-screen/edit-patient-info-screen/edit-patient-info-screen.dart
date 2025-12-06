@@ -58,7 +58,7 @@ class _EditPatientInfoScreenState extends State<EditPatientInfoScreen> {
   Widget build(BuildContext context) {
     double width = MediaQuery.sizeOf(context).width;
     return Scaffold(
-      appBar: AppBar(title: Text('اضافة معلومات المريض')),
+      appBar: AppBar(title: Text('تعديل معلومات المريض')),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Form(
