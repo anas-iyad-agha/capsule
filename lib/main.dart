@@ -2,10 +2,13 @@ import 'dart:async';
 
 import 'package:Capsule/local-db/localDB.dart';
 import 'package:Capsule/notification/notification.dart';
+import 'package:Capsule/providers/illnesses-provider.dart';
 import 'package:Capsule/providers/medicineReminderProvider.dart';
 import 'package:Capsule/providers/patien-info-probider.dart';
 import 'package:Capsule/screens/about-screen/about-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/clinical-file-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/illnesses-screen/add-illness-screen/add-illness-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/illnesses-screen/illnesses-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/patient-info-screen/add-patient-info-screen/add-patient-info-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/patient-info-screen/patient-info-screen.dart';
 import 'package:Capsule/screens/landing/landing-screen.dart';
@@ -85,6 +88,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider(create: (_) => MedicineReminderProvider()),
         ChangeNotifierProvider(create: (_) => PatientInfoProvider()),
+        ChangeNotifierProvider(create: (_) => IllnessesProvider()),
       ],
       child: MaterialApp(
         navigatorKey: navigatorKey,
@@ -110,6 +114,8 @@ class _MyAppState extends State<MyApp> {
           LandingScreen.route: (_) => LandingScreen(),
           PatientInfoScreen.route: (_) => PatientInfoScreen(),
           AddPatientInfoScreen.route: (_) => AddPatientInfoScreen(),
+          IllnessesScreen.route: (_) => IllnessesScreen(),
+          AddIllnessScreen.route: (_) => AddIllnessScreen(),
         },
       ),
     );

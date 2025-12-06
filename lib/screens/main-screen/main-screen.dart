@@ -1,4 +1,3 @@
-import 'package:Capsule/screens/about-screen/about-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/clinical-file-screen.dart';
 import 'package:Capsule/screens/main-screen/components/service-navigation-card.dart';
 import 'package:Capsule/screens/main-screen/components/today-schedule.dart';
@@ -14,15 +13,7 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffF6F8F7),
-      appBar: AppBar(
-        backgroundColor: Color(0xffF6F8F7),
-        actions: [
-          IconButton(
-            onPressed: () => Navigator.pushNamed(context, AboutScreen.route),
-            icon: Icon(Icons.info_outline),
-          ),
-        ],
-      ),
+      appBar: AppBar(backgroundColor: Color(0xffF6F8F7)),
       body: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
