@@ -6,6 +6,8 @@ import 'package:Capsule/providers/medicineReminderProvider.dart';
 import 'package:Capsule/providers/patien-info-probider.dart';
 import 'package:Capsule/screens/about-screen/about-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/clinical-file-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/patient-info-screen/add-patient-info-screen/add-patient-info-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/patient-info-screen/patient-info-screen.dart';
 import 'package:Capsule/screens/landing/landing-screen.dart';
 import 'package:Capsule/screens/main-screen/main-screen.dart';
 import 'package:Capsule/screens/medicine/add-medicine-screen/addMedicineScreen.dart';
@@ -106,6 +108,8 @@ class _MyAppState extends State<MyApp> {
           AddReminderScreen.route: (_) => AddReminderScreen(),
           ClinicalFileScreen.route: (_) => ClinicalFileScreen(),
           LandingScreen.route: (_) => LandingScreen(),
+          PatientInfoScreen.route: (_) => PatientInfoScreen(),
+          AddPatientInfoScreen.route: (_) => AddPatientInfoScreen(),
         },
       ),
     );

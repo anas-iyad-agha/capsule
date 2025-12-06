@@ -7,13 +7,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 class PatientInfoProvider with ChangeNotifier {
   PatientInfo? patientInfo;
 
-  Future getPatientInfo() async {
+  Future<int> getPatientInfo() async {
     SharedPreferences sharedPref = await SharedPreferences.getInstance();
     String? patientInfoJson = sharedPref.getString('patient_info');
-    if (patientInfoJson != null) {
-      patientInfo = PatientInfo.fromJson(jsonDecode(patientInfoJson));
+    if (patientInfoJson == null) {
+      return -1;
     }
+
+    patientInfo = PatientInfo.fromJson(jsonDecode(patientInfoJson));
     notifyListeners();
+    return 0;
   }
 
   Future saveInfo(PatientInfo newPatientInfo) async {

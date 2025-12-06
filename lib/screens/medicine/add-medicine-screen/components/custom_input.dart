@@ -8,7 +8,7 @@ class CustomInput extends StatelessWidget {
     this.labelText,
     this.initialValue,
     this.suffixText,
-    this.maxLines = 1,
+    this.maxLines,
     this.keyboardType,
     this.validator,
     this.onSaved,

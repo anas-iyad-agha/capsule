@@ -1,3 +1,4 @@
+import 'package:Capsule/screens/clinical-file-screen/patient-info-screen/patient-info-screen.dart';
 import 'package:flutter/material.dart';
 
 class ClinicalFileScreen extends StatefulWidget {
@@ -12,9 +13,15 @@ class _ClinicalFileScreenState extends State<ClinicalFileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('الملف السريري')),
       body: Column(
         children: [
-          GestureDetector(child: Text('معلومات المريض')),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, PatientInfoScreen.route);
+            },
+            child: Text('معلومات المريض'),
+          ),
           GestureDetector(child: Text('الأدوية')),
           GestureDetector(child: Text('الأمراض')),
           GestureDetector(child: Text('العمليات')),
