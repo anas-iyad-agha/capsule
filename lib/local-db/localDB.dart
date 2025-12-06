@@ -20,6 +20,15 @@ class Localdb {
         await db.execute('''
               CREATE TABLE IF NOT EXISTS reminders (id INTEGER PRIMARY KEY AUTOINCREMENT, medicine_id INTEGER NOT NULL, medicine_name TEXT NOT NULL, date_time INTEGER NOT NULL, label TEXT NOT NULL,  is_taken INTEGER NOT NULL, FOREIGN KEY (medicine_id) REFERENCES medicines (id) ON UPDATE NO ACTION ON DELETE CASCADE)
           ''');
+        await db.execute('''
+              CREATE TABLE IF NOT EXISTS illnesses (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, description TEXT NOT NULL, type TEXT)
+          ''');
+        await db.execute('''
+              CREATE TABLE IF NOT EXISTS operations (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, description TEXT)
+          ''');
+        await db.execute('''
+              CREATE TABLE IF NOT EXISTS tests (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, date TEXT NOT NULL, attachment TEXT)
+          ''');
       },
     );
   }
