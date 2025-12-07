@@ -1,5 +1,6 @@
 import 'package:Capsule/models/patient-info.dart';
 import 'package:Capsule/providers/patien-info-probider.dart';
+import 'package:Capsule/screens/components/curved-container.dart';
 import 'package:Capsule/screens/components/custom-drop-down-menu.dart';
 import 'package:Capsule/screens/medicine/add-medicine-screen/components/custom_input.dart';
 import 'package:flutter/material.dart';
@@ -59,9 +60,8 @@ class _EditPatientInfoScreenState extends State<EditPatientInfoScreen> {
     double width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       appBar: AppBar(title: Text('تعديل معلومات المريض')),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Form(
+      body: CurvedContainer(
+        Form(
           key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

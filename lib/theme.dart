@@ -40,7 +40,7 @@ ThemeData _buildCustomTheme() {
     ),
     hintColor: MyColors.lightRed,
     primaryColor: MyColors.lightBlue,
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: Colors.cyan,
     cardColor: Colors.white,
     buttonTheme: ButtonThemeData(
       colorScheme: myColorScheme,

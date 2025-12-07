@@ -4,13 +4,17 @@ import 'package:Capsule/local-db/localDB.dart';
 import 'package:Capsule/notification/notification.dart';
 import 'package:Capsule/providers/illnesses-provider.dart';
 import 'package:Capsule/providers/medicineReminderProvider.dart';
+import 'package:Capsule/providers/operations-provider.dart';
 import 'package:Capsule/providers/patien-info-probider.dart';
 import 'package:Capsule/screens/about-screen/about-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/clinical-file-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/illnesses-screen/add-illness-screen/add-illness-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/illnesses-screen/illnesses-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/operations-screen/add-operation-screen/add-operation-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/operations-screen/operations-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/patient-info-screen/add-patient-info-screen/add-patient-info-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/patient-info-screen/patient-info-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/tests-screen/tests-screen.dart';
 import 'package:Capsule/screens/landing/landing-screen.dart';
 import 'package:Capsule/screens/main-screen/main-screen.dart';
 import 'package:Capsule/screens/medicine/add-medicine-screen/addMedicineScreen.dart';
@@ -89,6 +93,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (_) => MedicineReminderProvider()),
         ChangeNotifierProvider(create: (_) => PatientInfoProvider()),
         ChangeNotifierProvider(create: (_) => IllnessesProvider()),
+        ChangeNotifierProvider(create: (_) => OperationsProvider()),
       ],
       child: MaterialApp(
         navigatorKey: navigatorKey,
@@ -116,6 +121,9 @@ class _MyAppState extends State<MyApp> {
           AddPatientInfoScreen.route: (_) => AddPatientInfoScreen(),
           IllnessesScreen.route: (_) => IllnessesScreen(),
           AddIllnessScreen.route: (_) => AddIllnessScreen(),
+          OperationsScreen.route: (_) => OperationsScreen(),
+          AddOperationScreen.route: (_) => AddOperationScreen(),
+          TestsScreen.route: (_) => TestsScreen(),
         },
       ),
     );

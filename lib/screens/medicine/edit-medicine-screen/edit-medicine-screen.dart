@@ -1,5 +1,6 @@
 import 'package:Capsule/models/medicine.dart';
 import 'package:Capsule/providers/medicineReminderProvider.dart';
+import 'package:Capsule/screens/components/curved-container.dart';
 import 'package:Capsule/screens/medicine/add-medicine-screen/components/custom_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -41,9 +42,8 @@ class _EditMedicineScreenState extends State<EditMedicineScreen> {
         backgroundColor: Colors.cyan,
         foregroundColor: Colors.white,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Form(
+      body: CurvedContainer(
+        Form(
           key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

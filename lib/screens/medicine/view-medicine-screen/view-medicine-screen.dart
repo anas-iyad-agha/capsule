@@ -1,4 +1,5 @@
 import 'package:Capsule/models/medicine.dart';
+import 'package:Capsule/screens/components/curved-container.dart';
 import 'package:Capsule/screens/medicine/components/delete-medicine-dialog.dart';
 import 'package:Capsule/screens/medicine/edit-medicine-screen/edit-medicine-screen.dart';
 import 'package:Capsule/screens/medicine/view-medicine-screen/components/info-card.dart';
@@ -24,8 +25,6 @@ class ViewMedicineScreen extends StatelessWidget {
     final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.teal,
-        foregroundColor: Colors.white,
         title: Text(medicine.name),
         actions: [
           MenuAnchor(
@@ -66,9 +65,8 @@ class ViewMedicineScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Column(
+      body: CurvedContainer(
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(

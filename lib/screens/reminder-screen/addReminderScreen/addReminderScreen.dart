@@ -1,5 +1,6 @@
 import 'package:Capsule/models/medicine.dart';
 import 'package:Capsule/providers/medicineReminderProvider.dart';
+import 'package:Capsule/screens/components/curved-container.dart';
 import 'package:Capsule/screens/medicine/add-medicine-screen/components/custom_input.dart';
 import 'package:Capsule/screens/reminder-screen/addReminderScreen/components/customDropDownMenu.dart';
 import 'package:flutter/material.dart';
@@ -45,14 +46,9 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('إضافة منبه'),
-        backgroundColor: Colors.cyan,
-        foregroundColor: Colors.white,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Form(
+      appBar: AppBar(title: const Text('إضافة منبه')),
+      body: CurvedContainer(
+        Form(
           key: _formKey,
           child: Column(
             children: [

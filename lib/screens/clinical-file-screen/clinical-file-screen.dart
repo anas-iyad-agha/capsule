@@ -1,5 +1,7 @@
 import 'package:Capsule/screens/clinical-file-screen/illnesses-screen/illnesses-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/operations-screen/operations-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/patient-info-screen/patient-info-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/tests-screen/tests-screen.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -16,7 +18,6 @@ class _ClinicalFileScreenState extends State<ClinicalFileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.cyan,
       appBar: AppBar(title: Text('الملف السريري')),
       body: CurvedContainer(
         Padding(
@@ -57,7 +58,7 @@ class _ClinicalFileScreenState extends State<ClinicalFileScreen> {
                 child: ListTile(
                   minVerticalPadding: 32,
                   onTap: () =>
-                      Navigator.pushNamed(context, PatientInfoScreen.route),
+                      Navigator.pushNamed(context, OperationsScreen.route),
                   trailing: Icon(Icons.arrow_forward_ios),
                   leading: FaIcon(
                     FontAwesomeIcons.stethoscope,
@@ -69,8 +70,7 @@ class _ClinicalFileScreenState extends State<ClinicalFileScreen> {
               Card(
                 child: ListTile(
                   minVerticalPadding: 32,
-                  onTap: () =>
-                      Navigator.pushNamed(context, PatientInfoScreen.route),
+                  onTap: () => Navigator.pushNamed(context, TestsScreen.route),
                   trailing: Icon(Icons.arrow_forward_ios),
                   leading: FaIcon(FontAwesomeIcons.flask, color: Colors.cyan),
                   title: Text('التحاليل'),

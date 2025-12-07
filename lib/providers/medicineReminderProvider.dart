@@ -81,26 +81,24 @@ class MedicineReminderProvider with ChangeNotifier {
   Future insertMedicine(
     String name,
     String description,
-    double currentSupply,
     double dose,
     double strength,
   ) async {
     state = MedicineReminderState.loading;
     notifyListeners();
 
-    try {
-      await Localdb.db!.insert('medicine', {
-        'name': name,
-        'description': description,
-        'current_supply': currentSupply,
-        'dose': dose,
-        'strength': strength,
-      });
+    // try {
+    await Localdb.db!.insert('medicine', {
+      'name': name,
+      'description': description,
+      'dose': dose,
+      'strength': strength,
+    });
 
-      state = MedicineReminderState.loaded;
-    } catch (e) {
-      state = MedicineReminderState.error;
-    }
+    state = MedicineReminderState.loaded;
+    // } catch (e) {
+    state = MedicineReminderState.error;
+    // }
     notifyListeners();
   }
 

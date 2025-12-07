@@ -1,31 +1,28 @@
-import 'package:Capsule/models/illness.dart';
-import 'package:Capsule/providers/illnesses-provider.dart';
+import 'package:Capsule/models/operation.dart';
+import 'package:Capsule/providers/operations-provider.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
-import 'package:Capsule/screens/components/custom-drop-down-menu.dart';
 import 'package:Capsule/screens/medicine/add-medicine-screen/components/custom_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class EditIllnessScreen extends StatefulWidget {
-  final Illness illness;
-  const EditIllnessScreen(this.illness, {super.key});
+class EditOperationScreen extends StatefulWidget {
+  final Operation operation;
+  const EditOperationScreen(this.operation, {super.key});
 
   @override
-  State<EditIllnessScreen> createState() => _EditIllnessScreenState();
+  State<EditOperationScreen> createState() => _EditOperationScreenState();
 }
 
-class _EditIllnessScreenState extends State<EditIllnessScreen> {
+class _EditOperationScreenState extends State<EditOperationScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  final _illnessNameController = TextEditingController();
-  final _illnessDescriptionController = TextEditingController();
-  final _illnessTypeController = TextEditingController();
+  final _operationNameController = TextEditingController();
+  final _operationDescriptionController = TextEditingController();
 
   @override
   void initState() {
-    _illnessNameController.text = widget.illness.name;
-    _illnessDescriptionController.text = widget.illness.description;
-    _illnessTypeController.text = widget.illness.type;
+    _operationNameController.text = widget.operation.name;
+    _operationDescriptionController.text = widget.operation.description;
     super.initState();
   }
 
@@ -46,7 +43,7 @@ class _EditIllnessScreenState extends State<EditIllnessScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CustomInput(
-                      controller: _illnessNameController,
+                      controller: _operationNameController,
                       labelText: 'اسم المرض',
                       validator: (val) => val == null || val.isEmpty
                           ? 'الرجاء ادخال اسم المرض'
@@ -54,44 +51,26 @@ class _EditIllnessScreenState extends State<EditIllnessScreen> {
                     ),
                     SizedBox(height: 16),
                     CustomInput(
-                      controller: _illnessDescriptionController,
+                      controller: _operationDescriptionController,
                       labelText: 'الوصف',
                       maxLines: 5,
                     ),
                     SizedBox(height: 16),
-                    CustomDropDownMenu<String>(
-                      width: width,
-                      controller: _illnessTypeController,
-                      initialSelection: _illnessTypeController.text,
-                      label: 'نوع المرض',
-                      dropDownMenuEntries: [
-                        for (String illnessType in Illness.illnessTypes)
-                          DropdownMenuEntry(
-                            value: illnessType,
-                            label: illnessType,
-                          ),
-                      ],
-                      validator: (val) => val == null || val.isEmpty
-                          ? 'الرجاء ادخال اسم المرض'
-                          : null,
-                    ),
-                    SizedBox(height: 32),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         MaterialButton(
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
-                              Provider.of<IllnessesProvider>(
+                              Provider.of<OperationsProvider>(
                                 context,
                                 listen: false,
-                              ).updateIllness(
-                                Illness(
-                                  id: widget.illness.id,
-                                  name: _illnessNameController.text,
+                              ).updateOperation(
+                                Operation(
+                                  id: widget.operation.id,
+                                  name: _operationNameController.text,
                                   description:
-                                      _illnessDescriptionController.text,
-                                  type: _illnessTypeController.text,
+                                      _operationDescriptionController.text,
                                 ),
                               );
                               Navigator.pop(context);

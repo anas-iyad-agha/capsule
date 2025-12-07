@@ -8,10 +8,23 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-class IllnessesScreen extends StatelessWidget {
+class IllnessesScreen extends StatefulWidget {
   static const route = '/clinical-file/illnesses';
 
   const IllnessesScreen({super.key});
+
+  @override
+  State<IllnessesScreen> createState() => _IllnessesScreenState();
+}
+
+class _IllnessesScreenState extends State<IllnessesScreen> {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<IllnessesProvider>(context, listen: false).getIllnesses();
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

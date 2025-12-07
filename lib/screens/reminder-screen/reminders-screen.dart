@@ -22,8 +22,6 @@ class _RemindersScreenState extends State<RemindersScreen> {
       backgroundColor: Colors.cyan,
       appBar: AppBar(
         title: Text('التنبيهات'),
-        foregroundColor: Colors.white,
-        backgroundColor: Colors.cyan,
         actions: [
           MenuAnchor(
             menuChildren: [
