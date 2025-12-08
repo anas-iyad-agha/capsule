@@ -61,7 +61,6 @@ class _RemindersScreenState extends State<RemindersScreen> {
             showDialog(context: context, builder: (_) => NoMedicineDialog());
           }
         },
-        backgroundColor: Colors.cyan,
         label: Text('أضف منبها'),
         icon: Icon(Icons.timer_outlined),
       ),

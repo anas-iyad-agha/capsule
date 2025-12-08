@@ -3,6 +3,7 @@ import 'package:Capsule/providers/illnesses-provider.dart';
 import 'package:Capsule/screens/clinical-file-screen/illnesses-screen/add-illness-screen/add-illness-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/illnesses-screen/components/delete-illness-dialog.dart';
 import 'package:Capsule/screens/clinical-file-screen/illnesses-screen/edit-illness-screen/edit-illness-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/illnesses-screen/view-illness-screen/view-illness-screen.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -90,7 +91,6 @@ class _IllnessesScreenState extends State<IllnessesScreen> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => Navigator.pushNamed(context, AddIllnessScreen.route),
-        backgroundColor: Colors.cyan,
         icon: Icon(Icons.add),
         label: Text('اضافة'),
       ),
@@ -131,6 +131,12 @@ class IllnessListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => ViewIllnessScreen(illness)),
+          );
+        },
         trailing: MenuAnchor(
           menuChildren: [
             MenuItemButton(
@@ -165,7 +171,22 @@ class IllnessListItem extends StatelessWidget {
             icon: Icon(Icons.more_vert),
           ),
         ),
-        title: Text(illness.name),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(illness.name),
+            illness.description.isNotEmpty
+                ? Text(
+                    illness.description,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyMedium!.copyWith(color: Colors.grey),
+                  )
+                : SizedBox(),
+          ],
+        ),
       ),
     );
   }

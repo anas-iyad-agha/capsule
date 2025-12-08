@@ -1,5 +1,6 @@
 import 'package:Capsule/models/illness.dart';
 import 'package:Capsule/providers/illnesses-provider.dart';
+import 'package:Capsule/screens/clinical-file-screen/illnesses-screen/illnesses-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -37,7 +38,10 @@ class DeleteIllnessDialog extends StatelessWidget {
                       context,
                       listen: false,
                     ).deleteIllness(illness.id!);
-                    Navigator.pop(context);
+                    Navigator.popUntil(
+                      context,
+                      (route) => route.settings.name == IllnessesScreen.route,
+                    );
                   },
                   child: Text('نعم', style: TextStyle(color: Colors.white)),
                 ),

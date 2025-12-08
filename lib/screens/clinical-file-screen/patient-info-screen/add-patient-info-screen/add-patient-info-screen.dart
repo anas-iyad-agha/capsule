@@ -1,7 +1,8 @@
 import 'package:Capsule/models/patient-info.dart';
 import 'package:Capsule/providers/patien-info-probider.dart';
+import 'package:Capsule/screens/clinical-file-screen/medicine/add-medicine-screen/components/custom_input.dart';
+import 'package:Capsule/screens/components/curved-container.dart';
 import 'package:Capsule/screens/components/custom-drop-down-menu.dart';
-import 'package:Capsule/screens/medicine/add-medicine-screen/components/custom_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -44,9 +45,8 @@ class _AddPatientInfoScreenState extends State<AddPatientInfoScreen> {
     double width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       appBar: AppBar(title: Text('اضافة معلومات المريض')),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Form(
+      body: CurvedContainer(
+        Form(
           key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -66,7 +66,7 @@ class _AddPatientInfoScreenState extends State<AddPatientInfoScreen> {
               Row(
                 children: [
                   CustomDropDownMenu<bool>(
-                    width: width / 2 - 12,
+                    width: width / 2 - 4 - width / 20,
                     initialSelection: isMale,
                     label: 'الجنس',
                     onSelected: (val) {
@@ -83,7 +83,7 @@ class _AddPatientInfoScreenState extends State<AddPatientInfoScreen> {
                   ),
                   SizedBox(width: 8),
                   CustomDropDownMenu<String>(
-                    width: width / 2 - 12,
+                    width: width / 2 - 4 - width / 20,
                     initialSelection: familyStatus,
                     label: 'الحالة الاجتماعية',
                     onSelected: (val) {
@@ -138,7 +138,7 @@ class _AddPatientInfoScreenState extends State<AddPatientInfoScreen> {
               Row(
                 children: [
                   CustomDropDownMenu(
-                    width: width / 2 - 12,
+                    width: width / 2 - 4 - width / 20,
                     controller: bloodTypeController,
                     label: 'فصيلة الدم',
                     dropDownMenuEntries: [
@@ -156,7 +156,7 @@ class _AddPatientInfoScreenState extends State<AddPatientInfoScreen> {
                   ),
                   SizedBox(width: 8),
                   SizedBox(
-                    width: width / 2 - 12,
+                    width: width / 2 - 4 - width / 20,
                     child: CheckboxListTile(
                       title: Text('مدخن'),
                       value: isSmoking,

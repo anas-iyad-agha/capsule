@@ -1,8 +1,8 @@
 import 'package:Capsule/models/patient-info.dart';
 import 'package:Capsule/providers/patien-info-probider.dart';
+import 'package:Capsule/screens/clinical-file-screen/medicine/add-medicine-screen/components/custom_input.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
 import 'package:Capsule/screens/components/custom-drop-down-menu.dart';
-import 'package:Capsule/screens/medicine/add-medicine-screen/components/custom_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

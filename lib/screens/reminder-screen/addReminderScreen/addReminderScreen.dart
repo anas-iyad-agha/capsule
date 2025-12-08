@@ -1,7 +1,7 @@
 import 'package:Capsule/models/medicine.dart';
 import 'package:Capsule/providers/medicineReminderProvider.dart';
+import 'package:Capsule/screens/clinical-file-screen/medicine/add-medicine-screen/components/custom_input.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
-import 'package:Capsule/screens/medicine/add-medicine-screen/components/custom_input.dart';
 import 'package:Capsule/screens/reminder-screen/addReminderScreen/components/customDropDownMenu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

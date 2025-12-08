@@ -26,7 +26,7 @@ class MainScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: ServiceNavigationCard(
-                          route: MedicineScreen.route,
+                          route: UserMedicineScreen.route,
                           title: 'أدويتي',
                           description: 'تابع جميع ادويتك',
                           icon: Icons.medication_outlined,

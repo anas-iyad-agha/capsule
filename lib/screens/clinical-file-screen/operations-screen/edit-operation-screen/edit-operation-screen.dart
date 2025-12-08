@@ -1,7 +1,7 @@
 import 'package:Capsule/models/operation.dart';
 import 'package:Capsule/providers/operations-provider.dart';
+import 'package:Capsule/screens/clinical-file-screen/medicine/add-medicine-screen/components/custom_input.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
-import 'package:Capsule/screens/medicine/add-medicine-screen/components/custom_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

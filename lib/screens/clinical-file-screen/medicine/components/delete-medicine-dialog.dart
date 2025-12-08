@@ -1,12 +1,12 @@
-import 'package:Capsule/models/operation.dart';
-import 'package:Capsule/providers/operations-provider.dart';
-import 'package:Capsule/screens/clinical-file-screen/operations-screen/operations-screen.dart';
+import 'package:Capsule/models/medicine.dart';
+import 'package:Capsule/providers/medicineReminderProvider.dart';
+import 'package:Capsule/screens/clinical-file-screen/medicine/medicine-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class DeleteOperationDialog extends StatelessWidget {
-  final Operation operation;
-  const DeleteOperationDialog(this.operation, {super.key});
+class DeleteMedicineDialog extends StatelessWidget {
+  final Medicine medicine;
+  const DeleteMedicineDialog(this.medicine, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +22,9 @@ class DeleteOperationDialog extends StatelessWidget {
               style: Theme.of(context).textTheme.titleLarge,
             ),
             SizedBox(height: 24),
-            Text(operation.name, style: Theme.of(context).textTheme.bodyLarge),
+            Text(medicine.name, style: Theme.of(context).textTheme.bodyLarge),
             Text(
-              operation.description,
+              medicine.description,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             SizedBox(height: 24),
@@ -33,14 +33,14 @@ class DeleteOperationDialog extends StatelessWidget {
               children: [
                 MaterialButton(
                   color: Colors.cyan,
-                  onPressed: () {
-                    Provider.of<OperationsProvider>(
+                  onPressed: () async {
+                    await Provider.of<MedicineReminderProvider>(
                       context,
                       listen: false,
-                    ).deleteOperation(operation.id!);
+                    ).deleteMedicine(medicine.id!);
                     Navigator.popUntil(
                       context,
-                      (route) => route.settings.name == OperationsScreen.route,
+                      (route) => route.settings.name == MedicineScreen.route,
                     );
                   },
                   child: Text('نعم', style: TextStyle(color: Colors.white)),

@@ -1,19 +1,20 @@
 import 'package:Capsule/providers/medicineReminderProvider.dart';
+import 'package:Capsule/screens/clinical-file-screen/medicine/add-medicine-screen/addMedicineScreen.dart';
+import 'package:Capsule/screens/clinical-file-screen/medicine/components/medicineListItem.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
-import 'package:Capsule/screens/medicine/components/medicineListItem.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class UserMedicineScreen extends StatefulWidget {
-  static const route = '/medicine';
+class MedicineScreen extends StatefulWidget {
+  static const route = '/clinical-file/medicine';
 
-  const UserMedicineScreen({super.key});
+  const MedicineScreen({super.key});
 
   @override
-  State<UserMedicineScreen> createState() => _UserMedicineScreenState();
+  State<MedicineScreen> createState() => _MedicineScreenState();
 }
 
-class _UserMedicineScreenState extends State<UserMedicineScreen> {
+class _MedicineScreenState extends State<MedicineScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -77,6 +78,11 @@ class _UserMedicineScreenState extends State<UserMedicineScreen> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => Navigator.pushNamed(context, AddMedicineScreen.route),
+        label: Text('أضف دواء'),
+        icon: Icon(Icons.add),
       ),
     );
   }

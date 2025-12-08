@@ -40,7 +40,8 @@ class DeleteMedicineDialog extends StatelessWidget {
                     ).deleteMedicine(medicine.id!);
                     Navigator.popUntil(
                       context,
-                      (route) => route.settings.name == MedicineScreen.route,
+                      (route) =>
+                          route.settings.name == UserMedicineScreen.route,
                     );
                   },
                   child: Text('نعم', style: TextStyle(color: Colors.white)),

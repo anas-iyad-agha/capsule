@@ -2,6 +2,7 @@ import 'package:Capsule/providers/operations-provider.dart';
 import 'package:Capsule/screens/clinical-file-screen/operations-screen/add-operation-screen/add-operation-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/operations-screen/components/delete-operation-dialog.dart';
 import 'package:Capsule/screens/clinical-file-screen/operations-screen/edit-operation-screen/edit-operation-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/operations-screen/view-operation-screen/view-operation-screen.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -48,8 +49,31 @@ class _OperationsScreenState extends State<OperationsScreen> {
             return ListView.builder(
               itemBuilder: (_, index) => Card(
                 child: ListTile(
-                  title: Text(provider.operations[index].name),
-                  leading: Text(provider.operations[index].id.toString()),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) =>
+                            ViewOperationScreen(provider.operations[index]),
+                      ),
+                    );
+                  },
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(provider.operations[index].name),
+                      provider.operations[index].description.isNotEmpty
+                          ? Text(
+                              provider.operations[index].description,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.bodyMedium!
+                                  .copyWith(color: Colors.grey),
+                            )
+                          : SizedBox(),
+                    ],
+                  ),
+                  leading: Text((index + 1).toString()),
                   trailing: MenuAnchor(
                     menuChildren: [
                       MenuItemButton(
@@ -93,7 +117,6 @@ class _OperationsScreenState extends State<OperationsScreen> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => Navigator.pushNamed(context, AddOperationScreen.route),
-        backgroundColor: Colors.cyan,
         label: Text('اضافة'),
         icon: Icon(Icons.add),
       ),

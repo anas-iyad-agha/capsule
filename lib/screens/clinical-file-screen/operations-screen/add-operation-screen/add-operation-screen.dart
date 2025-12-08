@@ -1,7 +1,7 @@
 import 'package:Capsule/models/operation.dart';
 import 'package:Capsule/providers/operations-provider.dart';
+import 'package:Capsule/screens/clinical-file-screen/medicine/add-medicine-screen/components/custom_input.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
-import 'package:Capsule/screens/medicine/add-medicine-screen/components/custom_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,6 +26,7 @@ class _AddOperationScreenState extends State<AddOperationScreen> {
         Form(
           key: _formKey,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomInput(
                 controller: _nameController,
@@ -33,11 +34,13 @@ class _AddOperationScreenState extends State<AddOperationScreen> {
                 validator: (val) =>
                     val == null || val.isEmpty ? 'الرجاء ملئ الاسم' : null,
               ),
+              SizedBox(height: 32),
               CustomInput(
                 controller: _descriptionController,
                 labelText: 'الوصف',
                 maxLines: 5,
               ),
+              SizedBox(height: 32),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [

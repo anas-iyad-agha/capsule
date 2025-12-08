@@ -1,12 +1,13 @@
-import 'package:Capsule/models/operation.dart';
-import 'package:Capsule/providers/operations-provider.dart';
-import 'package:Capsule/screens/clinical-file-screen/operations-screen/operations-screen.dart';
+import 'package:Capsule/models/test.dart';
+import 'package:Capsule/providers/tests-provider.dart';
+import 'package:Capsule/screens/clinical-file-screen/tests-screen/tests-screen.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-class DeleteOperationDialog extends StatelessWidget {
-  final Operation operation;
-  const DeleteOperationDialog(this.operation, {super.key});
+class DeleteTestDialog extends StatelessWidget {
+  final Test test;
+  const DeleteTestDialog(this.test, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +23,9 @@ class DeleteOperationDialog extends StatelessWidget {
               style: Theme.of(context).textTheme.titleLarge,
             ),
             SizedBox(height: 24),
-            Text(operation.name, style: Theme.of(context).textTheme.bodyLarge),
+            Text(test.name, style: Theme.of(context).textTheme.bodyLarge),
             Text(
-              operation.description,
+              DateFormat.yMMMd('ar').format(test.date),
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             SizedBox(height: 24),
@@ -34,13 +35,13 @@ class DeleteOperationDialog extends StatelessWidget {
                 MaterialButton(
                   color: Colors.cyan,
                   onPressed: () {
-                    Provider.of<OperationsProvider>(
+                    Provider.of<TestsProvider>(
                       context,
                       listen: false,
-                    ).deleteOperation(operation.id!);
+                    ).deleteTest(test.id!);
                     Navigator.popUntil(
                       context,
-                      (route) => route.settings.name == OperationsScreen.route,
+                      (route) => route.settings.name == TestsScreen.route,
                     );
                   },
                   child: Text('نعم', style: TextStyle(color: Colors.white)),

@@ -1,4 +1,5 @@
 import 'package:Capsule/screens/clinical-file-screen/illnesses-screen/illnesses-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/medicine/medicine-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/operations-screen/operations-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/patient-info-screen/patient-info-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/tests-screen/tests-screen.dart';
@@ -38,7 +39,7 @@ class _ClinicalFileScreenState extends State<ClinicalFileScreen> {
                 child: ListTile(
                   minVerticalPadding: 32,
                   onTap: () =>
-                      Navigator.pushNamed(context, PatientInfoScreen.route),
+                      Navigator.pushNamed(context, MedicineScreen.route),
                   trailing: Icon(Icons.arrow_forward_ios),
                   leading: FaIcon(FontAwesomeIcons.pills, color: Colors.cyan),
                   title: Text('الأدوية'),

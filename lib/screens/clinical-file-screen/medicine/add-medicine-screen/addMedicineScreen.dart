@@ -1,11 +1,11 @@
 import 'package:Capsule/providers/medicineReminderProvider.dart';
+import 'package:Capsule/screens/clinical-file-screen/medicine/add-medicine-screen/components/custom_input.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
-import 'package:Capsule/screens/medicine/add-medicine-screen/components/custom_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AddMedicineScreen extends StatelessWidget {
-  static final route = '/medicine/add';
+  static final route = '/clinical-file/medicine/add';
   AddMedicineScreen({super.key});
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();

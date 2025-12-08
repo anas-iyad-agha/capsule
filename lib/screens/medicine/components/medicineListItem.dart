@@ -1,6 +1,4 @@
 import 'package:Capsule/models/medicine.dart';
-import 'package:Capsule/screens/medicine/components/delete-medicine-dialog.dart';
-import 'package:Capsule/screens/medicine/edit-medicine-screen/edit-medicine-screen.dart';
 import 'package:Capsule/screens/medicine/view-medicine-screen/view-medicine-screen.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +16,7 @@ class MedicineListItem extends StatelessWidget {
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ViewMedicineScreen(medicine),
+              builder: (context) => UserViewMedicineScreen(medicine),
             ),
           ),
           leading: Image.asset('assets/icons/pills.png'),
@@ -33,42 +31,6 @@ class MedicineListItem extends StatelessWidget {
                 style: TextStyle(fontSize: 12),
               ),
             ],
-          ),
-          trailing: MenuAnchor(
-            menuChildren: [
-              MenuItemButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => EditMedicineScreen(medicine),
-                    ),
-                  );
-                },
-                leadingIcon: Icon(Icons.edit),
-                child: Text('تعديل'),
-              ),
-              MenuItemButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => DeleteMedicineDialog(medicine),
-                  );
-                },
-                leadingIcon: Icon(Icons.delete),
-                child: Text('حذف'),
-              ),
-            ],
-            builder: (_, controller, _) => IconButton(
-              icon: Icon(Icons.more_vert),
-              onPressed: () {
-                if (controller.isOpen) {
-                  controller.close();
-                } else {
-                  controller.open();
-                }
-              },
-            ),
           ),
         ),
       ),

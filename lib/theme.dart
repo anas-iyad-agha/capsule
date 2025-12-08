@@ -47,6 +47,9 @@ ThemeData _buildCustomTheme() {
       textTheme: ButtonTextTheme.normal,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
     ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: Colors.cyan,
+    ),
     textTheme: _buildCustomTextTheme(base.textTheme),
     primaryTextTheme: _buildCustomTextTheme(base.primaryTextTheme),
     colorScheme: myColorScheme.copyWith(error: MyColors.lightGreen),

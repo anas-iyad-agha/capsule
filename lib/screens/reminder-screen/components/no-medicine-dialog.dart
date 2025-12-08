@@ -18,8 +18,9 @@ class NoMedicineDialog extends StatelessWidget {
             ),
             SizedBox(height: 24),
             MaterialButton(
-              color: Colors.greenAccent,
+              color: Colors.cyan,
               onPressed: () => Navigator.pop(context),
+              textColor: Colors.white,
               child: Text('حسنا'),
             ),
           ],

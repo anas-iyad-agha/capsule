@@ -1,12 +1,14 @@
 import 'package:Capsule/models/medicine.dart';
+import 'package:Capsule/screens/clinical-file-screen/medicine/edit-medicine-screen/edit-medicine-screen.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
+import 'package:Capsule/screens/medicine/components/delete-medicine-dialog.dart';
 import 'package:Capsule/screens/medicine/view-medicine-screen/components/info-card.dart';
 import 'package:Capsule/theme.dart';
 import 'package:flutter/material.dart';
 
-class UserViewMedicineScreen extends StatelessWidget {
+class ViewMedicineScreen extends StatelessWidget {
   final Medicine medicine;
-  const UserViewMedicineScreen(this.medicine, {super.key});
+  const ViewMedicineScreen(this.medicine, {super.key});
 
   String formatDouble(double value) {
     if (value % 1 == 0) {
@@ -22,7 +24,47 @@ class UserViewMedicineScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
-      appBar: AppBar(title: Text(medicine.name)),
+      appBar: AppBar(
+        title: Text(medicine.name),
+        actions: [
+          MenuAnchor(
+            menuChildren: [
+              MenuItemButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => EditMedicineScreen(medicine),
+                    ),
+                  );
+                },
+                leadingIcon: Icon(Icons.edit),
+                child: Text('تعديل'),
+              ),
+              MenuItemButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) => DeleteMedicineDialog(medicine),
+                  );
+                },
+                leadingIcon: Icon(Icons.delete),
+                child: Text('حذف'),
+              ),
+            ],
+            builder: (_, controller, _) => IconButton(
+              onPressed: () {
+                if (controller.isOpen) {
+                  controller.close();
+                } else {
+                  controller.open();
+                }
+              },
+              icon: Icon(Icons.more_vert),
+            ),
+          ),
+        ],
+      ),
       body: CurvedContainer(
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
