@@ -41,6 +41,8 @@ class MedicineReminderProvider with ChangeNotifier {
             .map((medicine) => Medicine.fromJson(medicine))
             .toList();
 
+        print('medicines :: $medicinesData');
+
         reminders = remindersData
             .map((reminder) => Reminder.fromJson(reminder))
             .toList();
@@ -62,6 +64,7 @@ class MedicineReminderProvider with ChangeNotifier {
 
       state = MedicineReminderState.loaded;
     } catch (e) {
+      print(e.toString());
       state = MedicineReminderState.error;
     }
     notifyListeners();
@@ -83,6 +86,8 @@ class MedicineReminderProvider with ChangeNotifier {
     String description,
     double dose,
     double strength,
+    DateTime startDate,
+    DateTime endDate,
   ) async {
     state = MedicineReminderState.loading;
     notifyListeners();
@@ -93,6 +98,8 @@ class MedicineReminderProvider with ChangeNotifier {
       'description': description,
       'dose': dose,
       'strength': strength,
+      'start_date': startDate.toString(),
+      'end_date': endDate.toString(),
     });
 
     state = MedicineReminderState.loaded;
@@ -182,19 +189,21 @@ class MedicineReminderProvider with ChangeNotifier {
     TimeOfDay time,
     DateTimeRange dateRange,
     int repeat,
+    int hourlyRepeat,
   ) async {
     if (TimeOfDay.now().isAfter(time)) {
       dateRange.start.add(Duration(days: 1));
     }
     List<DateTime> dates = [
       for (int i = 0; i < dateRange.duration.inDays; i += repeat)
-        DateTime(
-          dateRange.start.year,
-          dateRange.start.month,
-          dateRange.start.day,
-          time.hour,
-          time.minute,
-        ).add(Duration(days: i)),
+        for (int j = time.hour; j < 24; j += hourlyRepeat)
+          DateTime(
+            dateRange.start.year,
+            dateRange.start.month,
+            dateRange.start.day,
+            j,
+            time.minute,
+          ).add(Duration(days: i)),
     ];
     List<Reminder> reminders = [];
     await Localdb.db!.transaction((txn) async {

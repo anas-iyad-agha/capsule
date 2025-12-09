@@ -5,6 +5,7 @@ import 'package:Capsule/providers/tests-provider.dart';
 import 'package:Capsule/screens/clinical-file-screen/medicine/add-medicine-screen/components/custom_input.dart';
 import 'package:Capsule/screens/clinical-file-screen/tests-screen/components/add-attachment-button.dart';
 import 'package:Capsule/screens/clinical-file-screen/tests-screen/components/file-card.dart';
+import 'package:Capsule/screens/clinical-file-screen/tests-screen/tests-screen.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class _EditTestScreenState extends State<EditTestScreen> {
   _selectTime() async {
     dateTime = await showDatePicker(
       context: context,
-      firstDate: DateTime.now(),
+      firstDate: DateTime.now().subtract(Duration(days: 3000)),
       lastDate: DateTime.now().add(Duration(days: 3000)),
     );
 
@@ -114,6 +115,7 @@ class _EditTestScreenState extends State<EditTestScreen> {
                         MaterialButton(
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
+                              print(dateTime);
                               Provider.of<TestsProvider>(
                                 context,
                                 listen: false,
@@ -125,7 +127,11 @@ class _EditTestScreenState extends State<EditTestScreen> {
                                   attachment: file?.path,
                                 ),
                               );
-                              Navigator.pop(context);
+                              Navigator.popUntil(
+                                context,
+                                (route) =>
+                                    route.settings.name == TestsScreen.route,
+                              );
                             }
                           },
                           color: Colors.cyan,

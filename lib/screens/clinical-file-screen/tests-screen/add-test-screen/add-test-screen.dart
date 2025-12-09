@@ -28,7 +28,7 @@ class _AddTestScreenState extends State<AddTestScreen> {
   _selectTime() async {
     dateTime = await showDatePicker(
       context: context,
-      firstDate: DateTime.now(),
+      firstDate: DateTime.now().subtract(Duration(days: 3000)),
       lastDate: DateTime.now().add(Duration(days: 3000)),
     );
 

@@ -67,11 +67,34 @@ class TestsProvider with ChangeNotifier {
   }
 
   Future updateTest(Test test) async {
-    int effectedRows = await Localdb.db!.update(
-      'tests',
-      test.toJson(),
-      where: 'id = ${test.id}',
-    );
+    File? newFile;
+    if (test.attachment != null) {
+      final Directory appDocumentsDir =
+          await getApplicationDocumentsDirectory();
+
+      final String attachmentsDirPath = p.join(
+        appDocumentsDir.path,
+        'attachments',
+      );
+      final Directory attachmentsDir = Directory(attachmentsDirPath);
+
+      if (!await attachmentsDir.exists()) {
+        await attachmentsDir.create(recursive: true);
+      }
+
+      final String fileName = p.basename(test.attachment!);
+
+      // 5. Define the new file path
+      final String newFilePath = p.join(attachmentsDirPath, fileName);
+
+      newFile = await File(test.attachment!).copy(newFilePath);
+    }
+
+    int effectedRows = await Localdb.db!.update('tests', {
+      'name': test.name,
+      'date': test.date.toString(),
+      'attachment': newFile?.path,
+    }, where: 'id = ${test.id}');
 
     if (effectedRows != 1) {
       throw Exception('effected rows are not 1');

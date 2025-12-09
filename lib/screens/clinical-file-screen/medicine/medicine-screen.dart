@@ -68,11 +68,58 @@ class _MedicineScreenState extends State<MedicineScreen> {
                     ),
                   );
                 }
-                return ListView.separated(
-                  itemBuilder: (_, index) =>
-                      MedicineListItem(provider.medicines[index]),
-                  separatorBuilder: (_, _) => SizedBox(height: 16),
-                  itemCount: provider.medicines.length,
+                var previuseMedicine = provider.medicines
+                    .where(
+                      (medicine) => medicine.endDate.isBefore(DateTime.now()),
+                    )
+                    .toList();
+                var currentMedicine = provider.medicines
+                    .where(
+                      (medicine) => medicine.endDate.isAfter(DateTime.now()),
+                    )
+                    .toList();
+                return CustomScrollView(
+                  slivers: [
+                    SliverToBoxAdapter(child: Text('الادوية الحالية')),
+                    currentMedicine.isNotEmpty
+                        ? SliverList.separated(
+                            itemBuilder: (_, index) =>
+                                MedicineListItem(currentMedicine[index]),
+                            separatorBuilder: (_, _) => SizedBox(height: 16),
+                            itemCount: currentMedicine.length,
+                          )
+                        : SliverToBoxAdapter(
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.medication_outlined),
+                                  Text('لا يوجد ادوية حالية'),
+                                ],
+                              ),
+                            ),
+                          ),
+                    SliverToBoxAdapter(child: SizedBox(height: 32)),
+                    SliverToBoxAdapter(child: Text('الادوية السابقة')),
+                    previuseMedicine.isNotEmpty
+                        ? SliverList.separated(
+                            itemBuilder: (_, index) =>
+                                MedicineListItem(previuseMedicine[index]),
+                            separatorBuilder: (_, _) => SizedBox(height: 16),
+                            itemCount: previuseMedicine.length,
+                          )
+                        : SliverToBoxAdapter(
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.medication_outlined),
+                                  Text('لا يوجد ادوية سابقة'),
+                                ],
+                              ),
+                            ),
+                          ),
+                  ],
                 );
               },
             ),

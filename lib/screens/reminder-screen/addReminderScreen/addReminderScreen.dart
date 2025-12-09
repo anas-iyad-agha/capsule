@@ -22,6 +22,7 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
   final _medicineController = TextEditingController();
   final _labelController = TextEditingController();
   final _repeatController = TextEditingController(text: '1');
+  final _hourlyRepeatController = TextEditingController();
 
   Medicine? savedSelectedMedicine;
 
@@ -106,18 +107,42 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
                 ),
               ),
               const SizedBox(height: 24),
-              CustomInput(
-                keyboardType: TextInputType.number,
-                controller: _repeatController,
-                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                suffixText: 'يوم/أيام',
-                labelText: 'التكرار',
-                validator: (val) {
-                  if (val!.isEmpty) {
-                    return 'الرجاء ملئ التكرار';
-                  }
-                  return null;
-                },
+              Row(
+                children: [
+                  Expanded(
+                    child: CustomInput(
+                      keyboardType: TextInputType.number,
+                      controller: _repeatController,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      suffixText: 'يوم/أيام',
+                      labelText: 'التكرار',
+                      validator: (val) {
+                        if (val!.isEmpty) {
+                          return 'الرجاء ملئ التكرار';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  Expanded(
+                    child: CustomInput(
+                      keyboardType: TextInputType.number,
+                      controller: _hourlyRepeatController,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      suffixText: 'ساعة/ساعات',
+                      labelText: 'التكرار',
+                      validator: (val) {
+                        if (val != null &&
+                            double.tryParse(val) != null &&
+                            double.parse(val) > 24) {
+                          return 'يجب ادخال عدد اقل من 24';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 24),
               CustomInput(labelText: 'وصف', controller: _labelController),
@@ -149,6 +174,7 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
                               time!,
                               dateRange!,
                               int.parse(_repeatController.text),
+                              int.tryParse(_hourlyRepeatController.text) ?? 23,
                             );
                             await provider.fetchData();
                           }

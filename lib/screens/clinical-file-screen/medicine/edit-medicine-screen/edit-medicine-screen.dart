@@ -1,8 +1,10 @@
 import 'package:Capsule/models/medicine.dart';
 import 'package:Capsule/providers/medicineReminderProvider.dart';
 import 'package:Capsule/screens/clinical-file-screen/medicine/add-medicine-screen/components/custom_input.dart';
+import 'package:Capsule/screens/clinical-file-screen/medicine/medicine-screen.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class EditMedicineScreen extends StatefulWidget {
@@ -25,13 +27,39 @@ class _EditMedicineScreenState extends State<EditMedicineScreen> {
 
   final _strengthController = TextEditingController();
 
+  DateTime? _startDate;
+
+  DateTime? _endDate;
+
   @override
   void initState() {
     _nameController.text = widget.medicine.name;
     _descriptionController.text = widget.medicine.description;
     _doseController.text = widget.medicine.dose.toString();
     _strengthController.text = widget.medicine.strength.toString();
+    _startDate = widget.medicine.startDate;
+    _endDate = widget.medicine.endDate;
     super.initState();
+  }
+
+  _selectStartDate() async {
+    _startDate = await showDatePicker(
+      context: context,
+      firstDate: DateTime.now().subtract(Duration(days: 3000)),
+      lastDate: DateTime.now().add(Duration(days: 3000)),
+    );
+
+    setState(() {});
+  }
+
+  _selectEndDate() async {
+    _endDate = await showDatePicker(
+      context: context,
+      firstDate: DateTime.now().subtract(Duration(days: 3000)),
+      lastDate: DateTime.now().add(Duration(days: 3000)),
+    );
+
+    setState(() {});
   }
 
   @override
@@ -64,6 +92,50 @@ class _EditMedicineScreenState extends State<EditMedicineScreen> {
                 controller: _descriptionController,
                 maxLines: null,
                 labelText: 'الوصف',
+              ),
+              SizedBox(height: 24),
+              GestureDetector(
+                onTap: _selectStartDate,
+                child: TextFormField(
+                  enabled: false,
+                  validator: (_) {
+                    if (_startDate == null) {
+                      return 'الرجاء اختيار تاريخ البدء';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    labelText: _startDate == null
+                        ? 'تاريخ البدء'
+                        : DateFormat.yMMMd('ar').format(_startDate!),
+                    labelStyle: const TextStyle(color: Colors.black54),
+                    disabledBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 24),
+              GestureDetector(
+                onTap: _selectEndDate,
+                child: TextFormField(
+                  enabled: false,
+                  validator: (_) {
+                    if (_endDate == null) {
+                      return 'الرجاء اختيار تاريخ الانتهاء';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    labelText: _endDate == null
+                        ? 'تاريخ الانتهاء'
+                        : DateFormat.yMMMd('ar').format(_endDate!),
+                    labelStyle: const TextStyle(color: Colors.black54),
+                    disabledBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                  ),
+                ),
               ),
               SizedBox(height: 24),
               Row(
@@ -124,6 +196,8 @@ class _EditMedicineScreenState extends State<EditMedicineScreen> {
                                 strength: double.parse(
                                   _strengthController.text,
                                 ),
+                                startDate: _startDate!,
+                                endDate: _endDate!,
                               ),
                             )
                             .then((_) async => await provider.fetchData());
@@ -135,7 +209,10 @@ class _EditMedicineScreenState extends State<EditMedicineScreen> {
                     child: Text('تأكيد'),
                   ),
                   OutlinedButton(
-                    onPressed: () => Navigator.pop(context),
+                    onPressed: () => Navigator.popUntil(
+                      context,
+                      (route) => route.settings.name == MedicineScreen.route,
+                    ),
                     style: ButtonStyle(
                       side: WidgetStatePropertyAll(
                         BorderSide(color: Colors.redAccent),

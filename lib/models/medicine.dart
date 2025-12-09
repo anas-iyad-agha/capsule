@@ -4,6 +4,8 @@ class Medicine {
   final String description;
   final double dose;
   final double strength;
+  final DateTime startDate;
+  final DateTime endDate;
 
   Medicine({
     this.id,
@@ -11,6 +13,8 @@ class Medicine {
     required this.description,
     required this.dose,
     required this.strength,
+    required this.startDate,
+    required this.endDate,
   });
 
   factory Medicine.fromJson(Map<String, dynamic> json) => Medicine(
@@ -19,6 +23,8 @@ class Medicine {
     description: json['description'],
     dose: json['dose'],
     strength: json['strength'],
+    startDate: DateTime.parse(json['start_date']),
+    endDate: DateTime.parse(json['end_date']),
   );
 
   Map<String, dynamic> toJson() => {
@@ -27,6 +33,8 @@ class Medicine {
     'description': description,
     'dose': dose,
     'strength': strength,
+    'start_date': startDate.toString(),
+    'end_date': endDate.toString(),
   };
 
   @override

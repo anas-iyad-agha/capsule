@@ -2,22 +2,55 @@ import 'package:Capsule/providers/medicineReminderProvider.dart';
 import 'package:Capsule/screens/clinical-file-screen/medicine/add-medicine-screen/components/custom_input.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-class AddMedicineScreen extends StatelessWidget {
+class AddMedicineScreen extends StatefulWidget {
   static final route = '/clinical-file/medicine/add';
   AddMedicineScreen({super.key});
 
+  @override
+  State<AddMedicineScreen> createState() => _AddMedicineScreenState();
+}
+
+class _AddMedicineScreenState extends State<AddMedicineScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   final TextEditingController _nameController = TextEditingController();
+
   final TextEditingController _descriptionController = TextEditingController();
 
   final TextEditingController _doseController = TextEditingController(
     text: '1',
   );
+
   final TextEditingController _strengthController = TextEditingController(
     text: '1',
   );
+
+  DateTime? _startDate;
+
+  DateTime? _endDate;
+
+  _selectStartDate() async {
+    _startDate = await showDatePicker(
+      context: context,
+      firstDate: DateTime.now().subtract(Duration(days: 3000)),
+      lastDate: DateTime.now().add(Duration(days: 3000)),
+    );
+
+    setState(() {});
+  }
+
+  _selectEndDate() async {
+    _endDate = await showDatePicker(
+      context: context,
+      firstDate: DateTime.now().subtract(Duration(days: 3000)),
+      lastDate: DateTime.now().add(Duration(days: 3000)),
+    );
+
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +83,50 @@ class AddMedicineScreen extends StatelessWidget {
                   controller: _descriptionController,
                   maxLines: null,
                   labelText: 'الوصف',
+                ),
+                SizedBox(height: 24),
+                GestureDetector(
+                  onTap: _selectStartDate,
+                  child: TextFormField(
+                    enabled: false,
+                    validator: (_) {
+                      if (_startDate == null) {
+                        return 'الرجاء اختيار تاريخ البدء';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      labelText: _startDate == null
+                          ? 'تاريخ البدء'
+                          : DateFormat.yMMMd('ar').format(_startDate!),
+                      labelStyle: const TextStyle(color: Colors.black54),
+                      disabledBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 24),
+                GestureDetector(
+                  onTap: _selectEndDate,
+                  child: TextFormField(
+                    enabled: false,
+                    validator: (_) {
+                      if (_endDate == null) {
+                        return 'الرجاء اختيار تاريخ الانتهاء';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      labelText: _endDate == null
+                          ? 'تاريخ الانتهاء'
+                          : DateFormat.yMMMd('ar').format(_endDate!),
+                      labelStyle: const TextStyle(color: Colors.black54),
+                      disabledBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(height: 24),
                 Row(
@@ -106,6 +183,8 @@ class AddMedicineScreen extends StatelessWidget {
                                 _descriptionController.text,
                                 double.parse(_doseController.text),
                                 double.parse(_strengthController.text),
+                                _startDate!,
+                                _endDate!,
                               )
                               .then((_) async => await provider.fetchData());
                           Navigator.pop(context);
