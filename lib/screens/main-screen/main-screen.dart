@@ -1,7 +1,6 @@
 import 'package:Capsule/screens/clinical-file-screen/clinical-file-screen.dart';
 import 'package:Capsule/screens/main-screen/components/service-navigation-card.dart';
 import 'package:Capsule/screens/main-screen/components/today-schedule.dart';
-import 'package:Capsule/screens/medicine/medicine-screen.dart';
 import 'package:Capsule/screens/reminder-screen/reminders-screen.dart';
 import 'package:flutter/material.dart';
 
@@ -26,14 +25,6 @@ class MainScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: ServiceNavigationCard(
-                          route: UserMedicineScreen.route,
-                          title: 'أدويتي',
-                          description: 'تابع جميع ادويتك',
-                          icon: Icons.medication_outlined,
-                        ),
-                      ),
-                      Expanded(
-                        child: ServiceNavigationCard(
                           route: RemindersScreen.route,
                           title: 'التنبيهات',
                           icon: Icons.notifications_on_outlined,
@@ -48,7 +39,7 @@ class MainScreen extends StatelessWidget {
                         child: ServiceNavigationCard(
                           route: ClinicalFileScreen.route,
                           title: 'الملف السريري',
-                          icon: Icons.bar_chart_outlined,
+                          icon: Icons.insert_drive_file_outlined,
                           description: 'تابع ملف المريض ومعلوماته الصحية',
                         ),
                       ),

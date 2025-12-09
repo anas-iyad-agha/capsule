@@ -16,11 +16,7 @@ class LandingScreen extends StatefulWidget {
 class _LandingScreenState extends State<LandingScreen> {
   final pageController = PageController();
 
-  final colors = <Color>[
-    MyColors.landing1,
-    MyColors.landing2,
-    MyColors.landing3,
-  ];
+  final colors = <Color>[MyColors.landing1, Colors.cyan, Colors.blueAccent];
 
   Color pageColor = MyColors.landing1;
 
@@ -33,7 +29,6 @@ class _LandingScreenState extends State<LandingScreen> {
         duration: Duration(milliseconds: 200),
         child: PageView(
           controller: pageController,
-
           onPageChanged: (index) {
             setState(() {
               pageColor = colors[index];

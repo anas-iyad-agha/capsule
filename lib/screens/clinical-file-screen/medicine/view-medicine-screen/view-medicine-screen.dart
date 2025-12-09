@@ -1,8 +1,8 @@
 import 'package:Capsule/models/medicine.dart';
+import 'package:Capsule/screens/clinical-file-screen/medicine/components/delete-medicine-dialog.dart';
 import 'package:Capsule/screens/clinical-file-screen/medicine/edit-medicine-screen/edit-medicine-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/medicine/view-medicine-screen/components/info-card.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
-import 'package:Capsule/screens/medicine/components/delete-medicine-dialog.dart';
-import 'package:Capsule/screens/medicine/view-medicine-screen/components/info-card.dart';
 import 'package:Capsule/theme.dart';
 import 'package:flutter/material.dart';
 

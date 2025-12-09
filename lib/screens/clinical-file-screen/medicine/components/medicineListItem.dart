@@ -1,7 +1,7 @@
 import 'package:Capsule/models/medicine.dart';
+import 'package:Capsule/screens/clinical-file-screen/medicine/components/delete-medicine-dialog.dart';
 import 'package:Capsule/screens/clinical-file-screen/medicine/edit-medicine-screen/edit-medicine-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/medicine/view-medicine-screen/view-medicine-screen.dart';
-import 'package:Capsule/screens/medicine/components/delete-medicine-dialog.dart';
 import 'package:flutter/material.dart';
 
 class MedicineListItem extends StatelessWidget {
