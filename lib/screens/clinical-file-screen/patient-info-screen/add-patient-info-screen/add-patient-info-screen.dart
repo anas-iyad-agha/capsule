@@ -45,181 +45,193 @@ class _AddPatientInfoScreenState extends State<AddPatientInfoScreen> {
     double width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       appBar: AppBar(title: Text('اضافة معلومات المريض')),
-      body: CurvedContainer(
-        Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              CustomInput(
-                controller: fullNameController,
-                keyboardType: TextInputType.name,
-                validator: (val) => val!.isEmpty ? 'الرجاء ادخال الاسم' : null,
-                labelText: 'الاسم الثلاثي',
-              ),
-              CustomInput(
-                controller: jobController,
-                keyboardType: TextInputType.name,
-                validator: (val) => val!.isEmpty ? 'الرجاء ادخال الاسم' : null,
-                labelText: 'الوظيفة',
-              ),
-              Row(
-                children: [
-                  CustomDropDownMenu<bool>(
-                    width: width / 2 - 4 - width / 20,
-                    initialSelection: isMale,
-                    label: 'الجنس',
-                    onSelected: (val) {
-                      if (val != null) {
-                        setState(() {
-                          isMale = val;
-                        });
-                      }
-                    },
-                    dropDownMenuEntries: [
-                      DropdownMenuEntry(value: true, label: 'ذكر'),
-                      DropdownMenuEntry(value: false, label: 'أنثى'),
-                    ],
-                  ),
-                  SizedBox(width: 8),
-                  CustomDropDownMenu<String>(
-                    width: width / 2 - 4 - width / 20,
-                    initialSelection: familyStatus,
-                    label: 'الحالة الاجتماعية',
-                    onSelected: (val) {
-                      if (val != null) {
-                        setState(() {
-                          familyStatus = val;
-                        });
-                      }
-                    },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'الرجاء اختيار الحالة الاجتماعية';
-                      }
-                      if (!familyStatusOptions.contains(value)) {
-                        return 'الرجاء اختيار حالة من القائمة';
-                      }
-                    },
-                    dropDownMenuEntries: [
-                      for (var status in familyStatusOptions)
-                        DropdownMenuEntry(value: status, label: status),
-                    ],
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: CustomInput(
-                      controller: weightController,
-                      keyboardType: TextInputType.number,
-                      suffixText: 'Kg',
-                      labelText: 'الوزن',
-                      validator: (val) => val == null || val.isEmpty
-                          ? 'الرجاء ادخال الوزن'
-                          : null,
-                    ),
-                  ),
-                  SizedBox(width: 12),
-                  Expanded(
-                    child: CustomInput(
-                      controller: heightController,
-                      keyboardType: TextInputType.number,
-                      suffixText: 'Cm',
-                      labelText: 'الطول',
-                      validator: (val) => val == null || val.isEmpty
-                          ? 'الرجاء ادخال الطول'
-                          : null,
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  CustomDropDownMenu(
-                    width: width / 2 - 4 - width / 20,
-                    controller: bloodTypeController,
-                    label: 'فصيلة الدم',
-                    dropDownMenuEntries: [
-                      for (var bloodType in bloodTypes)
-                        DropdownMenuEntry(value: bloodType, label: bloodType),
-                    ],
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'الرجاء اختيار فصيلة الدم';
-                      }
-                      if (!bloodTypes.contains(value)) {
-                        return 'الرجاء اختيار فصيلة دم من القائمة';
-                      }
-                    },
-                  ),
-                  SizedBox(width: 8),
-                  SizedBox(
-                    width: width / 2 - 4 - width / 20,
-                    child: CheckboxListTile(
-                      title: Text('مدخن'),
-                      value: isSmoking,
-                      onChanged: (val) {
-                        if (val != null) {
-                          setState(() {
-                            isSmoking = val;
-                          });
-                        }
-                      },
-                    ),
-                  ),
-                ],
-              ),
-              CustomInput(
-                controller: allergiesController,
-                labelText: 'الحساسيات',
-              ),
-              Row(
+      body: Column(
+        children: [
+          CurvedContainer(
+            Form(
+              key: _formKey,
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  MaterialButton(
-                    color: Colors.cyan,
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        Provider.of<PatientInfoProvider>(
-                          context,
-                          listen: false,
-                        ).saveInfo(
-                          PatientInfo(
-                            fullName: fullNameController.text,
-                            job: jobController.text,
-                            isMale: isMale,
-                            familyStatus: familyStatus,
-                            weight: double.parse(weightController.text),
-                            height: double.parse(heightController.text),
-                            bloodType: bloodTypeController.text,
-                            allergies: allergiesController.text,
-                            isSmoking: isSmoking,
-                          ),
-                        );
-                        Navigator.pop(context);
-                      }
-                    },
-                    child: Text('اضافة', style: TextStyle(color: Colors.white)),
+                  CustomInput(
+                    controller: fullNameController,
+                    keyboardType: TextInputType.name,
+                    validator: (val) =>
+                        val!.isEmpty ? 'الرجاء ادخال الاسم' : null,
+                    labelText: 'الاسم الثلاثي',
                   ),
-                  OutlinedButton(
-                    onPressed: () => Navigator.pop(context),
-                    style: ButtonStyle(
-                      side: WidgetStatePropertyAll(
-                        BorderSide(color: Colors.redAccent),
+                  CustomInput(
+                    controller: jobController,
+                    keyboardType: TextInputType.name,
+                    validator: (val) =>
+                        val!.isEmpty ? 'الرجاء ادخال الاسم' : null,
+                    labelText: 'الوظيفة',
+                  ),
+                  Row(
+                    children: [
+                      CustomDropDownMenu<bool>(
+                        width: width / 2 - 4 - width / 20,
+                        initialSelection: isMale,
+                        label: 'الجنس',
+                        onSelected: (val) {
+                          if (val != null) {
+                            setState(() {
+                              isMale = val;
+                            });
+                          }
+                        },
+                        dropDownMenuEntries: [
+                          DropdownMenuEntry(value: true, label: 'ذكر'),
+                          DropdownMenuEntry(value: false, label: 'أنثى'),
+                        ],
                       ),
-                    ),
-                    child: Text(
-                      'الغاء',
-                      style: TextStyle(color: Colors.redAccent),
-                    ),
+                      SizedBox(width: 8),
+                      CustomDropDownMenu<String>(
+                        width: width / 2 - 4 - width / 20,
+                        initialSelection: familyStatus,
+                        label: 'الحالة الاجتماعية',
+                        onSelected: (val) {
+                          if (val != null) {
+                            setState(() {
+                              familyStatus = val;
+                            });
+                          }
+                        },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'الرجاء اختيار الحالة الاجتماعية';
+                          }
+                          if (!familyStatusOptions.contains(value)) {
+                            return 'الرجاء اختيار حالة من القائمة';
+                          }
+                        },
+                        dropDownMenuEntries: [
+                          for (var status in familyStatusOptions)
+                            DropdownMenuEntry(value: status, label: status),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: CustomInput(
+                          controller: weightController,
+                          keyboardType: TextInputType.number,
+                          suffixText: 'Kg',
+                          labelText: 'الوزن',
+                          validator: (val) => val == null || val.isEmpty
+                              ? 'الرجاء ادخال الوزن'
+                              : null,
+                        ),
+                      ),
+                      SizedBox(width: 12),
+                      Expanded(
+                        child: CustomInput(
+                          controller: heightController,
+                          keyboardType: TextInputType.number,
+                          suffixText: 'Cm',
+                          labelText: 'الطول',
+                          validator: (val) => val == null || val.isEmpty
+                              ? 'الرجاء ادخال الطول'
+                              : null,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      CustomDropDownMenu(
+                        width: width / 2 - 4 - width / 20,
+                        controller: bloodTypeController,
+                        label: 'فصيلة الدم',
+                        dropDownMenuEntries: [
+                          for (var bloodType in bloodTypes)
+                            DropdownMenuEntry(
+                              value: bloodType,
+                              label: bloodType,
+                            ),
+                        ],
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'الرجاء اختيار فصيلة الدم';
+                          }
+                          if (!bloodTypes.contains(value)) {
+                            return 'الرجاء اختيار فصيلة دم من القائمة';
+                          }
+                        },
+                      ),
+                      SizedBox(width: 8),
+                      SizedBox(
+                        width: width / 2 - 4 - width / 20,
+                        child: CheckboxListTile(
+                          title: Text('مدخن'),
+                          value: isSmoking,
+                          onChanged: (val) {
+                            if (val != null) {
+                              setState(() {
+                                isSmoking = val;
+                              });
+                            }
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  CustomInput(
+                    controller: allergiesController,
+                    labelText: 'الحساسيات',
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      MaterialButton(
+                        color: Colors.cyan,
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            Provider.of<PatientInfoProvider>(
+                              context,
+                              listen: false,
+                            ).saveInfo(
+                              PatientInfo(
+                                fullName: fullNameController.text,
+                                job: jobController.text,
+                                isMale: isMale,
+                                familyStatus: familyStatus,
+                                weight: double.parse(weightController.text),
+                                height: double.parse(heightController.text),
+                                bloodType: bloodTypeController.text,
+                                allergies: allergiesController.text,
+                                isSmoking: isSmoking,
+                              ),
+                            );
+                            Navigator.pop(context);
+                          }
+                        },
+                        child: Text(
+                          'اضافة',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                      OutlinedButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: ButtonStyle(
+                          side: WidgetStatePropertyAll(
+                            BorderSide(color: Colors.redAccent),
+                          ),
+                        ),
+                        child: Text(
+                          'الغاء',
+                          style: TextStyle(color: Colors.redAccent),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

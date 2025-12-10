@@ -31,89 +31,95 @@ class _OperationsScreenState extends State<OperationsScreen> {
     return Scaffold(
       backgroundColor: Colors.cyan,
       appBar: AppBar(title: Text('العمليات')),
-      body: CurvedContainer(
-        Consumer<OperationsProvider>(
-          builder: (_, provider, _) {
-            if (provider.operations.isEmpty) {
-              return SizedBox.expand(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FaIcon(FontAwesomeIcons.heartCircleCheck),
-                    SizedBox(height: 8),
-                    Text('لا يوجد عمليات'),
-                  ],
-                ),
-              );
-            }
-            return ListView.builder(
-              itemBuilder: (_, index) => Card(
-                child: ListTile(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) =>
-                            ViewOperationScreen(provider.operations[index]),
-                      ),
-                    );
-                  },
-                  title: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(provider.operations[index].name),
-                      provider.operations[index].description.isNotEmpty
-                          ? Text(
-                              provider.operations[index].description,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.bodyMedium!
-                                  .copyWith(color: Colors.grey),
-                            )
-                          : SizedBox(),
-                    ],
-                  ),
-                  leading: Text((index + 1).toString()),
-                  trailing: MenuAnchor(
-                    menuChildren: [
-                      MenuItemButton(
-                        leadingIcon: Icon(Icons.edit_outlined),
-                        child: Text('تعديل'),
-                        onPressed: () => Navigator.push(
+      body: Column(
+        children: [
+          CurvedContainer(
+            Consumer<OperationsProvider>(
+              builder: (_, provider, _) {
+                if (provider.operations.isEmpty) {
+                  return SizedBox.expand(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FaIcon(FontAwesomeIcons.heartCircleCheck),
+                        SizedBox(height: 8),
+                        Text('لا يوجد عمليات'),
+                      ],
+                    ),
+                  );
+                }
+                return ListView.builder(
+                  itemBuilder: (_, index) => Card(
+                    child: ListTile(
+                      onTap: () {
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (_) =>
-                                EditOperationScreen(provider.operations[index]),
+                                ViewOperationScreen(provider.operations[index]),
                           ),
-                        ),
-                      ),
-                      MenuItemButton(
-                        leadingIcon: Icon(Icons.delete_outline),
-                        child: Text('حذف'),
-                        onPressed: () => showDialog(
-                          context: context,
-                          builder: (_) =>
-                              DeleteOperationDialog(provider.operations[index]),
-                        ),
-                      ),
-                    ],
-                    builder: (_, controller, _) => IconButton(
-                      onPressed: () {
-                        if (controller.isOpen) {
-                          controller.close();
-                        } else {
-                          controller.open();
-                        }
+                        );
                       },
-                      icon: Icon(Icons.more_vert),
+                      title: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(provider.operations[index].name),
+                          provider.operations[index].description.isNotEmpty
+                              ? Text(
+                                  provider.operations[index].description,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.bodyMedium!
+                                      .copyWith(color: Colors.grey),
+                                )
+                              : SizedBox(),
+                        ],
+                      ),
+                      leading: Text((index + 1).toString()),
+                      trailing: MenuAnchor(
+                        menuChildren: [
+                          MenuItemButton(
+                            leadingIcon: Icon(Icons.edit_outlined),
+                            child: Text('تعديل'),
+                            onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => EditOperationScreen(
+                                  provider.operations[index],
+                                ),
+                              ),
+                            ),
+                          ),
+                          MenuItemButton(
+                            leadingIcon: Icon(Icons.delete_outline),
+                            child: Text('حذف'),
+                            onPressed: () => showDialog(
+                              context: context,
+                              builder: (_) => DeleteOperationDialog(
+                                provider.operations[index],
+                              ),
+                            ),
+                          ),
+                        ],
+                        builder: (_, controller, _) => IconButton(
+                          onPressed: () {
+                            if (controller.isOpen) {
+                              controller.close();
+                            } else {
+                              controller.open();
+                            }
+                          },
+                          icon: Icon(Icons.more_vert),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-              itemCount: provider.operations.length,
-            );
-          },
-        ),
+                  itemCount: provider.operations.length,
+                );
+              },
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => Navigator.pushNamed(context, AddOperationScreen.route),

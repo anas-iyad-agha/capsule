@@ -22,65 +22,69 @@ class _AddOperationScreenState extends State<AddOperationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('اضافة عملية')),
-      body: CurvedContainer(
-        Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomInput(
-                controller: _nameController,
-                labelText: 'الاسم',
-                validator: (val) =>
-                    val == null || val.isEmpty ? 'الرجاء ملئ الاسم' : null,
-              ),
-              SizedBox(height: 32),
-              CustomInput(
-                controller: _descriptionController,
-                labelText: 'الوصف',
-                maxLines: 5,
-              ),
-              SizedBox(height: 32),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+      body: Column(
+        children: [
+          CurvedContainer(
+            Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  MaterialButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        var provider = Provider.of<OperationsProvider>(
-                          context,
-                          listen: false,
-                        );
-                        provider.addOperation(
-                          Operation(
-                            name: _nameController.text,
-                            description: _descriptionController.text,
-                          ),
-                        );
-                        Navigator.pop(context);
-                      }
-                    },
-                    color: Colors.cyan,
-                    textColor: Colors.white,
-                    child: Text('إضافة'),
+                  CustomInput(
+                    controller: _nameController,
+                    labelText: 'الاسم',
+                    validator: (val) =>
+                        val == null || val.isEmpty ? 'الرجاء ملئ الاسم' : null,
                   ),
-                  OutlinedButton(
-                    onPressed: () => Navigator.pop(context),
-                    style: ButtonStyle(
-                      side: WidgetStatePropertyAll(
-                        BorderSide(color: Colors.redAccent),
+                  SizedBox(height: 32),
+                  CustomInput(
+                    controller: _descriptionController,
+                    labelText: 'الوصف',
+                    maxLines: 5,
+                  ),
+                  SizedBox(height: 32),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      MaterialButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            var provider = Provider.of<OperationsProvider>(
+                              context,
+                              listen: false,
+                            );
+                            provider.addOperation(
+                              Operation(
+                                name: _nameController.text,
+                                description: _descriptionController.text,
+                              ),
+                            );
+                            Navigator.pop(context);
+                          }
+                        },
+                        color: Colors.cyan,
+                        textColor: Colors.white,
+                        child: Text('إضافة'),
                       ),
-                    ),
-                    child: Text(
-                      'إلغاء',
-                      style: TextStyle(color: Colors.redAccent),
-                    ),
+                      OutlinedButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: ButtonStyle(
+                          side: WidgetStatePropertyAll(
+                            BorderSide(color: Colors.redAccent),
+                          ),
+                        ),
+                        child: Text(
+                          'إلغاء',
+                          style: TextStyle(color: Colors.redAccent),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

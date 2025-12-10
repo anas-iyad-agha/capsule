@@ -65,57 +65,65 @@ class ViewMedicineScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: CurvedContainer(
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: Image.asset('assets/icons/pills.png', width: width / 2),
-            ),
-            const SizedBox(height: 32),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 8, 16),
-              child: Text(
-                medicine.name,
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 0, 0, 24),
-              child: Text(
-                medicine.description,
-                softWrap: true,
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-            ),
-            Expanded(
-              child: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      body: Column(
+        children: [
+          CurvedContainer(
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Image.asset(
+                    'assets/icons/pills.png',
+                    width: width / 2,
+                  ),
+                ),
+                const SizedBox(height: 32),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 8, 8, 16),
+                  child: Text(
+                    medicine.name,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 0, 0, 24),
+                  child: Text(
+                    medicine.description,
+                    softWrap: true,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                ),
+                Expanded(
+                  child: Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        InfoCard(
-                          title: 'الجرعة',
-                          info: '${formatDouble(medicine.dose)} حبة/جرعة',
-                          color: MyColors.lightRed,
-                          iconData: Icons.timelapse,
-                        ),
-                        InfoCard(
-                          title: 'العيار',
-                          info: '${formatDouble(medicine.strength)} ميلي جرام',
-                          color: Colors.purple,
-                          iconData: Icons.hourglass_bottom,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            InfoCard(
+                              title: 'الجرعة',
+                              info: '${formatDouble(medicine.dose)} حبة/جرعة',
+                              color: MyColors.lightRed,
+                              iconData: Icons.timelapse,
+                            ),
+                            InfoCard(
+                              title: 'العيار',
+                              info:
+                                  '${formatDouble(medicine.strength)} ميلي جرام',
+                              color: Colors.purple,
+                              iconData: Icons.hourglass_bottom,
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

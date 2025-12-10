@@ -13,75 +13,82 @@ class ViewIllnessScreen extends StatelessWidget {
     final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       appBar: AppBar(title: Text('معلومات العملية')),
-      body: CurvedContainer(
-        SizedBox.expand(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                illness.name,
-                style: Theme.of(context).textTheme.displayLarge,
-              ),
-              SizedBox(height: 32),
-              Text(illness.type, style: Theme.of(context).textTheme.titleLarge),
-              SizedBox(height: 32),
-              Text(
-                illness.description,
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-              Spacer(),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => EditIllnessScreen(illness),
+      body: Column(
+        children: [
+          CurvedContainer(
+            SizedBox.expand(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    illness.name,
+                    style: Theme.of(context).textTheme.displayLarge,
+                  ),
+                  SizedBox(height: 32),
+                  Text(
+                    illness.type,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  SizedBox(height: 32),
+                  Text(
+                    illness.description,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  Spacer(),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => EditIllnessScreen(illness),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: width,
+                      padding: EdgeInsets.all(20),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: Colors.cyan,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        'تعديل',
+                        style: Theme.of(
+                          context,
+                        ).textTheme.titleMedium!.copyWith(color: Colors.white),
+                      ),
                     ),
-                  );
-                },
-                child: Container(
-                  width: width,
-                  padding: EdgeInsets.all(20),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Colors.cyan,
-                    borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Text(
-                    'تعديل',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium!.copyWith(color: Colors.white),
+                  SizedBox(height: 16),
+                  GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (_) => DeleteIllnessDialog(illness),
+                      );
+                    },
+                    child: Container(
+                      width: width,
+                      padding: EdgeInsets.all(20),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: Colors.cyan.withAlpha(50),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        'حذف',
+                        style: Theme.of(
+                          context,
+                        ).textTheme.titleMedium!.copyWith(color: Colors.cyan),
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-              SizedBox(height: 16),
-              GestureDetector(
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (_) => DeleteIllnessDialog(illness),
-                  );
-                },
-                child: Container(
-                  width: width,
-                  padding: EdgeInsets.all(20),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Colors.cyan.withAlpha(50),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    'حذف',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium!.copyWith(color: Colors.cyan),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

@@ -65,99 +65,106 @@ class _EditTestScreenState extends State<EditTestScreen> {
     return Scaffold(
       appBar: AppBar(title: Text('تعديل المرض')),
       backgroundColor: Colors.cyan,
-      body: CurvedContainer(
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Center(
-            child: SingleChildScrollView(
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CustomInput(
-                      controller: _nameController,
-                      labelText: 'اسم المرض',
-                      validator: (val) => val == null || val.isEmpty
-                          ? 'الرجاء ادخال اسم المرض'
-                          : null,
-                    ),
-                    SizedBox(height: 32),
-                    GestureDetector(
-                      onTap: _selectTime,
-                      child: TextFormField(
-                        enabled: false,
-                        validator: (_) {
-                          if (dateTime == null) {
-                            return 'الرجاء اختيار التاريخ';
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          labelText: dateTime == null
-                              ? 'تاريخ'
-                              : DateFormat.yMMMd('ar').format(dateTime!),
-                          labelStyle: const TextStyle(color: Colors.black54),
-                          disabledBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 32),
-                    file == null
-                        ? AddAttachmentButton(_selectFile)
-                        : FileCard(file!, onDeleteCallback: _removeFile),
-                    SizedBox(height: 32),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      body: Column(
+        children: [
+          CurvedContainer(
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: SingleChildScrollView(
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        MaterialButton(
-                          onPressed: () async {
-                            if (_formKey.currentState!.validate()) {
-                              print(dateTime);
-                              Provider.of<TestsProvider>(
-                                context,
-                                listen: false,
-                              ).updateTest(
-                                Test(
-                                  id: widget.test.id,
-                                  name: _nameController.text,
-                                  date: dateTime!,
-                                  attachment: file?.path,
-                                ),
-                              );
-                              Navigator.popUntil(
-                                context,
-                                (route) =>
-                                    route.settings.name == TestsScreen.route,
-                              );
-                            }
-                          },
-                          color: Colors.cyan,
-                          textColor: Colors.white,
-                          child: Text('تعديل'),
+                        CustomInput(
+                          controller: _nameController,
+                          labelText: 'اسم المرض',
+                          validator: (val) => val == null || val.isEmpty
+                              ? 'الرجاء ادخال اسم المرض'
+                              : null,
                         ),
-                        OutlinedButton(
-                          onPressed: () => Navigator.pop(context),
-                          style: ButtonStyle(
-                            side: WidgetStatePropertyAll(
-                              BorderSide(color: Colors.redAccent),
+                        SizedBox(height: 32),
+                        GestureDetector(
+                          onTap: _selectTime,
+                          child: TextFormField(
+                            enabled: false,
+                            validator: (_) {
+                              if (dateTime == null) {
+                                return 'الرجاء اختيار التاريخ';
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              labelText: dateTime == null
+                                  ? 'تاريخ'
+                                  : DateFormat.yMMMd('ar').format(dateTime!),
+                              labelStyle: const TextStyle(
+                                color: Colors.black54,
+                              ),
+                              disabledBorder: const UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
                             ),
                           ),
-                          child: Text(
-                            'إلغاء',
-                            style: TextStyle(color: Colors.redAccent),
-                          ),
+                        ),
+                        SizedBox(height: 32),
+                        file == null
+                            ? AddAttachmentButton(_selectFile)
+                            : FileCard(file!, onDeleteCallback: _removeFile),
+                        SizedBox(height: 32),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            MaterialButton(
+                              onPressed: () async {
+                                if (_formKey.currentState!.validate()) {
+                                  print(dateTime);
+                                  Provider.of<TestsProvider>(
+                                    context,
+                                    listen: false,
+                                  ).updateTest(
+                                    Test(
+                                      id: widget.test.id,
+                                      name: _nameController.text,
+                                      date: dateTime!,
+                                      attachment: file?.path,
+                                    ),
+                                  );
+                                  Navigator.popUntil(
+                                    context,
+                                    (route) =>
+                                        route.settings.name ==
+                                        TestsScreen.route,
+                                  );
+                                }
+                              },
+                              color: Colors.cyan,
+                              textColor: Colors.white,
+                              child: Text('تعديل'),
+                            ),
+                            OutlinedButton(
+                              onPressed: () => Navigator.pop(context),
+                              style: ButtonStyle(
+                                side: WidgetStatePropertyAll(
+                                  BorderSide(color: Colors.redAccent),
+                                ),
+                              ),
+                              child: Text(
+                                'إلغاء',
+                                style: TextStyle(color: Colors.redAccent),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

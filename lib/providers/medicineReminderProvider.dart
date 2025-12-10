@@ -41,8 +41,6 @@ class MedicineReminderProvider with ChangeNotifier {
             .map((medicine) => Medicine.fromJson(medicine))
             .toList();
 
-        print('medicines :: $medicinesData');
-
         reminders = remindersData
             .map((reminder) => Reminder.fromJson(reminder))
             .toList();

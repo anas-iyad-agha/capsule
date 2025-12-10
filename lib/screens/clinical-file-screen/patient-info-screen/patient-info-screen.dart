@@ -56,165 +56,180 @@ class _PatientInfoScreenState extends State<PatientInfoScreen> {
           ),
         ],
       ),
-      body: CurvedContainer(
-        Consumer<PatientInfoProvider>(
-          builder: (context, provider, _) {
-            if (provider.patientInfo == null) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.person_off_outlined, size: width / 4),
-                    Text('لم يتم ادخال معلومات المريض'),
-                    SizedBox(height: 16),
-                    MaterialButton(
-                      onPressed: () => Navigator.pushNamed(
-                        context,
-                        AddPatientInfoScreen.route,
-                      ),
-                      padding: EdgeInsets.all(16),
-                      color: Colors.cyan,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Text(
-                        'ادخال معلومات المريض',
-                        style: TextStyle(color: Colors.white),
-                      ),
+      body: Column(
+        children: [
+          CurvedContainer(
+            Consumer<PatientInfoProvider>(
+              builder: (context, provider, _) {
+                if (provider.patientInfo == null) {
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.person_off_outlined, size: width / 4),
+                        Text('لم يتم ادخال معلومات المريض'),
+                        SizedBox(height: 16),
+                        MaterialButton(
+                          onPressed: () => Navigator.pushNamed(
+                            context,
+                            AddPatientInfoScreen.route,
+                          ),
+                          padding: EdgeInsets.all(16),
+                          color: Colors.cyan,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Text(
+                            'ادخال معلومات المريض',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              );
-            }
-            return SizedBox.expand(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Icon(Icons.person_outline, size: width / 2),
-                  Text(
-                    provider.patientInfo!.fullName,
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  Text(provider.patientInfo!.job),
-                  Card(
-                    elevation: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'المؤشرات الطبية الحيوية',
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          SizedBox(height: 8),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              MedicalVitalsInfo(
-                                name: 'الوزن',
-                                value: provider.patientInfo!.weight.toString(),
-                                unit: 'Kg',
-                              ),
-                              MedicalVitalsInfo(
-                                name: 'الطول',
-                                value: provider.patientInfo!.height.toString(),
-                                unit: 'Cm',
-                              ),
-                              MedicalVitalsInfo(
-                                name: 'فصيلة الدم',
-                                value: provider.patientInfo!.bloodType,
-                                unit: '',
-                              ),
-                            ],
-                          ),
-                        ],
+                  );
+                }
+                return SizedBox.expand(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(Icons.person_outline, size: width / 2),
+                      Text(
+                        provider.patientInfo!.fullName,
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
-                    ),
-                  ),
-                  Card(
-                    elevation: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'المعلومات الشخصية',
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          Divider(color: Colors.grey, height: 32),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      Text(provider.patientInfo!.job),
+                      Card(
+                        elevation: 2,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'الجنس',
-                                style: TextStyle(color: Colors.grey),
+                                'المؤشرات الطبية الحيوية',
+                                style: Theme.of(context).textTheme.titleMedium,
                               ),
-                              Text(
-                                provider.patientInfo!.isMale ? 'ذكر' : 'أنثى',
+                              SizedBox(height: 8),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  MedicalVitalsInfo(
+                                    name: 'الوزن',
+                                    value: provider.patientInfo!.weight
+                                        .toString(),
+                                    unit: 'Kg',
+                                  ),
+                                  MedicalVitalsInfo(
+                                    name: 'الطول',
+                                    value: provider.patientInfo!.height
+                                        .toString(),
+                                    unit: 'Cm',
+                                  ),
+                                  MedicalVitalsInfo(
+                                    name: 'فصيلة الدم',
+                                    value: provider.patientInfo!.bloodType,
+                                    unit: '',
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                          Divider(color: Colors.grey, height: 32),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'الحالة الاجتماعية',
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                              Text(provider.patientInfo!.familyStatus),
-                            ],
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-                  Card(
-                    elevation: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'الحالة الطبية',
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          Divider(color: Colors.grey, height: 32),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      Card(
+                        elevation: 2,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'الحساسيات',
-                                style: TextStyle(color: Colors.grey),
+                                'المعلومات الشخصية',
+                                style: Theme.of(context).textTheme.titleMedium,
                               ),
-                              Text(provider.patientInfo!.allergies),
+                              Divider(color: Colors.grey, height: 32),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'الجنس',
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
+                                  Text(
+                                    provider.patientInfo!.isMale
+                                        ? 'ذكر'
+                                        : 'أنثى',
+                                  ),
+                                ],
+                              ),
+                              Divider(color: Colors.grey, height: 32),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'الحالة الاجتماعية',
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
+                                  Text(provider.patientInfo!.familyStatus),
+                                ],
+                              ),
                             ],
                           ),
-                          Divider(color: Colors.grey, height: 32),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'التدخين',
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                              Text(
-                                provider.patientInfo!.isSmoking ? 'نعم' : 'لا',
-                              ),
-                            ],
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
+                      Card(
+                        elevation: 2,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'الحالة الطبية',
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
+                              Divider(color: Colors.grey, height: 32),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'الحساسيات',
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
+                                  Text(provider.patientInfo!.allergies),
+                                ],
+                              ),
+                              Divider(color: Colors.grey, height: 32),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'التدخين',
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
+                                  Text(
+                                    provider.patientInfo!.isSmoking
+                                        ? 'نعم'
+                                        : 'لا',
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            );
-          },
-        ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

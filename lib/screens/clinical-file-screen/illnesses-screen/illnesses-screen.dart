@@ -32,62 +32,66 @@ class _IllnessesScreenState extends State<IllnessesScreen> {
     return Scaffold(
       backgroundColor: Colors.cyan,
       appBar: AppBar(title: Text('الأمراض')),
-      body: CurvedContainer(
-        Consumer<IllnessesProvider>(
-          builder: (_, provider, _) {
-            var currentIllnesses = provider.illnesses
-                .where((illness) => illness.type == Illness.illnessTypes[0])
-                .toList();
+      body: Column(
+        children: [
+          CurvedContainer(
+            Consumer<IllnessesProvider>(
+              builder: (_, provider, _) {
+                var currentIllnesses = provider.illnesses
+                    .where((illness) => illness.type == Illness.illnessTypes[0])
+                    .toList();
 
-            var tempraryIllnesses = provider.illnesses
-                .where((illness) => illness.type == Illness.illnessTypes[1])
-                .toList();
+                var tempraryIllnesses = provider.illnesses
+                    .where((illness) => illness.type == Illness.illnessTypes[1])
+                    .toList();
 
-            var healedIllnesses = provider.illnesses
-                .where((illness) => illness.type == Illness.illnessTypes[2])
-                .toList();
+                var healedIllnesses = provider.illnesses
+                    .where((illness) => illness.type == Illness.illnessTypes[2])
+                    .toList();
 
-            var hereditaryIllness = provider.illnesses
-                .where((illness) => illness.type == Illness.illnessTypes[3])
-                .toList();
-            return CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(child: SizedBox(height: 32)),
-                SliverToBoxAdapter(
-                  child: Text(
-                    Illness.illnessTypes[0],
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                ),
-                IllnessList(currentIllnesses),
-                SliverToBoxAdapter(child: Divider(height: 64)),
-                SliverToBoxAdapter(
-                  child: Text(
-                    Illness.illnessTypes[1],
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                ),
-                IllnessList(tempraryIllnesses),
-                SliverToBoxAdapter(child: Divider(height: 64)),
-                SliverToBoxAdapter(
-                  child: Text(
-                    Illness.illnessTypes[2],
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                ),
-                IllnessList(healedIllnesses),
-                SliverToBoxAdapter(child: Divider(height: 64)),
-                SliverToBoxAdapter(
-                  child: Text(
-                    Illness.illnessTypes[3],
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                ),
-                IllnessList(hereditaryIllness),
-              ],
-            );
-          },
-        ),
+                var hereditaryIllness = provider.illnesses
+                    .where((illness) => illness.type == Illness.illnessTypes[3])
+                    .toList();
+                return CustomScrollView(
+                  slivers: [
+                    SliverToBoxAdapter(child: SizedBox(height: 32)),
+                    SliverToBoxAdapter(
+                      child: Text(
+                        Illness.illnessTypes[0],
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ),
+                    IllnessList(currentIllnesses),
+                    SliverToBoxAdapter(child: Divider(height: 64)),
+                    SliverToBoxAdapter(
+                      child: Text(
+                        Illness.illnessTypes[1],
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ),
+                    IllnessList(tempraryIllnesses),
+                    SliverToBoxAdapter(child: Divider(height: 64)),
+                    SliverToBoxAdapter(
+                      child: Text(
+                        Illness.illnessTypes[2],
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ),
+                    IllnessList(healedIllnesses),
+                    SliverToBoxAdapter(child: Divider(height: 64)),
+                    SliverToBoxAdapter(
+                      child: Text(
+                        Illness.illnessTypes[3],
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ),
+                    IllnessList(hereditaryIllness),
+                  ],
+                );
+              },
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => Navigator.pushNamed(context, AddIllnessScreen.route),

@@ -36,97 +36,98 @@ class _EditIllnessScreenState extends State<EditIllnessScreen> {
     return Scaffold(
       appBar: AppBar(title: Text('تعديل المرض')),
       backgroundColor: Colors.cyan,
-      body: CurvedContainer(
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Center(
-            child: SingleChildScrollView(
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CustomInput(
-                      controller: _illnessNameController,
-                      labelText: 'اسم المرض',
-                      validator: (val) => val == null || val.isEmpty
-                          ? 'الرجاء ادخال اسم المرض'
-                          : null,
-                    ),
-                    SizedBox(height: 16),
-                    CustomInput(
-                      controller: _illnessDescriptionController,
-                      labelText: 'الوصف',
-                      maxLines: 5,
-                    ),
-                    SizedBox(height: 16),
-                    CustomDropDownMenu<String>(
-                      width: width,
-                      controller: _illnessTypeController,
-                      initialSelection: _illnessTypeController.text,
-                      label: 'نوع المرض',
-                      dropDownMenuEntries: [
-                        for (String illnessType in Illness.illnessTypes)
-                          DropdownMenuEntry(
-                            value: illnessType,
-                            label: illnessType,
+      body: Column(
+        children: [
+          CurvedContainer(
+            Center(
+              child: SingleChildScrollView(
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomInput(
+                        controller: _illnessNameController,
+                        labelText: 'اسم المرض',
+                        validator: (val) => val == null || val.isEmpty
+                            ? 'الرجاء ادخال اسم المرض'
+                            : null,
+                      ),
+                      SizedBox(height: 16),
+                      CustomInput(
+                        controller: _illnessDescriptionController,
+                        labelText: 'الوصف',
+                        maxLines: 5,
+                      ),
+                      SizedBox(height: 16),
+                      CustomDropDownMenu<String>(
+                        width: width,
+                        controller: _illnessTypeController,
+                        initialSelection: _illnessTypeController.text,
+                        label: 'نوع المرض',
+                        dropDownMenuEntries: [
+                          for (String illnessType in Illness.illnessTypes)
+                            DropdownMenuEntry(
+                              value: illnessType,
+                              label: illnessType,
+                            ),
+                        ],
+                        validator: (val) => val == null || val.isEmpty
+                            ? 'الرجاء ادخال اسم المرض'
+                            : null,
+                      ),
+                      SizedBox(height: 32),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          MaterialButton(
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                Provider.of<IllnessesProvider>(
+                                  context,
+                                  listen: false,
+                                ).updateIllness(
+                                  Illness(
+                                    id: widget.illness.id,
+                                    name: _illnessNameController.text,
+                                    description:
+                                        _illnessDescriptionController.text,
+                                    type: _illnessTypeController.text,
+                                  ),
+                                );
+                                Navigator.popUntil(
+                                  context,
+                                  (route) =>
+                                      route.settings.name ==
+                                      IllnessesScreen.route,
+                                );
+                              }
+                            },
+                            color: Colors.cyan,
+                            textColor: Colors.white,
+                            child: Text('تعديل'),
                           ),
-                      ],
-                      validator: (val) => val == null || val.isEmpty
-                          ? 'الرجاء ادخال اسم المرض'
-                          : null,
-                    ),
-                    SizedBox(height: 32),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        MaterialButton(
-                          onPressed: () async {
-                            if (_formKey.currentState!.validate()) {
-                              Provider.of<IllnessesProvider>(
-                                context,
-                                listen: false,
-                              ).updateIllness(
-                                Illness(
-                                  id: widget.illness.id,
-                                  name: _illnessNameController.text,
-                                  description:
-                                      _illnessDescriptionController.text,
-                                  type: _illnessTypeController.text,
-                                ),
-                              );
-                              Navigator.popUntil(
-                                context,
-                                (route) =>
-                                    route.settings.name ==
-                                    IllnessesScreen.route,
-                              );
-                            }
-                          },
-                          color: Colors.cyan,
-                          textColor: Colors.white,
-                          child: Text('تعديل'),
-                        ),
-                        OutlinedButton(
-                          onPressed: () => Navigator.pop(context),
-                          style: ButtonStyle(
-                            side: WidgetStatePropertyAll(
-                              BorderSide(color: Colors.redAccent),
+                          OutlinedButton(
+                            onPressed: () => Navigator.pop(context),
+                            style: ButtonStyle(
+                              side: WidgetStatePropertyAll(
+                                BorderSide(color: Colors.redAccent),
+                              ),
+                            ),
+                            child: Text(
+                              'إلغاء',
+                              style: TextStyle(color: Colors.redAccent),
                             ),
                           ),
-                          child: Text(
-                            'إلغاء',
-                            style: TextStyle(color: Colors.redAccent),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
