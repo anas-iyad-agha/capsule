@@ -45,7 +45,7 @@ class MedicineListItem extends StatelessWidget {
                     ),
                   );
                 },
-                leadingIcon: Icon(Icons.edit),
+                leadingIcon: Icon(Icons.edit_outlined),
                 child: Text('تعديل'),
               ),
               MenuItemButton(
@@ -55,7 +55,7 @@ class MedicineListItem extends StatelessWidget {
                     builder: (context) => DeleteMedicineDialog(medicine),
                   );
                 },
-                leadingIcon: Icon(Icons.delete),
+                leadingIcon: Icon(Icons.delete_outline),
                 child: Text('حذف'),
               ),
             ],

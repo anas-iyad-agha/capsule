@@ -2,6 +2,7 @@ import 'package:Capsule/models/illness.dart';
 import 'package:Capsule/providers/illnesses-provider.dart';
 import 'package:Capsule/screens/clinical-file-screen/illnesses-screen/illnesses-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/medicine/add-medicine-screen/components/custom_input.dart';
+import 'package:Capsule/screens/clinical-file-screen/view-all-info-screen/view-all-info-screen.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
 import 'package:Capsule/screens/components/custom-drop-down-menu.dart';
 import 'package:flutter/material.dart';
@@ -99,7 +100,9 @@ class _EditIllnessScreenState extends State<EditIllnessScreen> {
                                   context,
                                   (route) =>
                                       route.settings.name ==
-                                      IllnessesScreen.route,
+                                          IllnessesScreen.route ||
+                                      route.settings.name ==
+                                          ViewAllInfoScreen.route,
                                 );
                               }
                             },

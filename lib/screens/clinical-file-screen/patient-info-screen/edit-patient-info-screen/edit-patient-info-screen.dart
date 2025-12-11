@@ -85,7 +85,7 @@ class _EditPatientInfoScreenState extends State<EditPatientInfoScreen> {
                   Row(
                     children: [
                       CustomDropDownMenu<bool>(
-                        width: width / 2 - 12,
+                        width: width / 2 - 4 - width / 20,
                         initialSelection: isMale,
                         label: 'الجنس',
                         onSelected: (val) {
@@ -102,7 +102,7 @@ class _EditPatientInfoScreenState extends State<EditPatientInfoScreen> {
                       ),
                       SizedBox(width: 8),
                       CustomDropDownMenu<String>(
-                        width: width / 2 - 12,
+                        width: width / 2 - 4 - width / 20,
                         initialSelection: familyStatus,
                         label: 'الحالة الاجتماعية',
                         onSelected: (val) {
@@ -154,29 +154,30 @@ class _EditPatientInfoScreenState extends State<EditPatientInfoScreen> {
                   ),
                   Row(
                     children: [
-                      CustomDropDownMenu(
-                        width: width / 2 - 12,
-                        controller: bloodTypeController,
-                        initialSelection: bloodTypeController.text,
-                        label: 'فصيلة الدم',
-                        dropDownMenuEntries: [
-                          for (var bloodType in bloodTypes)
-                            DropdownMenuEntry(
-                              value: bloodType,
-                              label: bloodType,
-                            ),
-                        ],
-                        validator: (value) {
-                          print(value.runtimeType);
-                          if (value == null || value.isEmpty) {
-                            return 'الرجاء اختيار فصيلة الدم';
-                          }
-                          return null;
-                        },
+                      Expanded(
+                        child: CustomDropDownMenu(
+                          // width: width / 2 - 4 - width / 20,
+                          controller: bloodTypeController,
+                          initialSelection: bloodTypeController.text,
+                          label: 'فصيلة الدم',
+                          dropDownMenuEntries: [
+                            for (var bloodType in bloodTypes)
+                              DropdownMenuEntry(
+                                value: bloodType,
+                                label: bloodType,
+                              ),
+                          ],
+                          validator: (value) {
+                            print(value.runtimeType);
+                            if (value == null || value.isEmpty) {
+                              return 'الرجاء اختيار فصيلة الدم';
+                            }
+                            return null;
+                          },
+                        ),
                       ),
                       SizedBox(width: 8),
-                      SizedBox(
-                        width: width / 2 - 12,
+                      Expanded(
                         child: CheckboxListTile(
                           title: Text('مدخن'),
                           value: isSmoking,

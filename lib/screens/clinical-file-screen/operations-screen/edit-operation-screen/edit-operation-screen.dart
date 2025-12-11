@@ -2,6 +2,7 @@ import 'package:Capsule/models/operation.dart';
 import 'package:Capsule/providers/operations-provider.dart';
 import 'package:Capsule/screens/clinical-file-screen/medicine/add-medicine-screen/components/custom_input.dart';
 import 'package:Capsule/screens/clinical-file-screen/operations-screen/operations-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/view-all-info-screen/view-all-info-screen.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -77,7 +78,9 @@ class _EditOperationScreenState extends State<EditOperationScreen> {
                                   context,
                                   (route) =>
                                       route.settings.name ==
-                                      OperationsScreen.route,
+                                          OperationsScreen.route ||
+                                      route.settings.name ==
+                                          ViewAllInfoScreen.route,
                                 );
                               }
                             },

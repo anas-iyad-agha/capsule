@@ -2,6 +2,7 @@ import 'package:Capsule/models/medicine.dart';
 import 'package:Capsule/providers/medicineReminderProvider.dart';
 import 'package:Capsule/screens/clinical-file-screen/medicine/add-medicine-screen/components/custom_input.dart';
 import 'package:Capsule/screens/clinical-file-screen/medicine/medicine-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/view-all-info-screen/view-all-info-screen.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -205,7 +206,13 @@ class _EditMedicineScreenState extends State<EditMedicineScreen> {
                                   ),
                                 )
                                 .then((_) async => await provider.fetchData());
-                            Navigator.pop(context);
+                            Navigator.popUntil(
+                              context,
+                              (route) =>
+                                  route.settings.name == MedicineScreen.route ||
+                                  route.settings.name ==
+                                      ViewAllInfoScreen.route,
+                            );
                           }
                         },
                         color: Colors.cyan,

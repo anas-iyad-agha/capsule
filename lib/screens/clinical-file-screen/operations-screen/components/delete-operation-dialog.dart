@@ -1,6 +1,7 @@
 import 'package:Capsule/models/operation.dart';
 import 'package:Capsule/providers/operations-provider.dart';
 import 'package:Capsule/screens/clinical-file-screen/operations-screen/operations-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/view-all-info-screen/view-all-info-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -40,7 +41,9 @@ class DeleteOperationDialog extends StatelessWidget {
                     ).deleteOperation(operation.id!);
                     Navigator.popUntil(
                       context,
-                      (route) => route.settings.name == OperationsScreen.route,
+                      (route) =>
+                          route.settings.name == OperationsScreen.route ||
+                          route.settings.name == ViewAllInfoScreen.route,
                     );
                   },
                   child: Text('نعم', style: TextStyle(color: Colors.white)),

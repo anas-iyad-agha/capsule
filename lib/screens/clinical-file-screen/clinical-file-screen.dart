@@ -3,6 +3,7 @@ import 'package:Capsule/screens/clinical-file-screen/medicine/medicine-screen.da
 import 'package:Capsule/screens/clinical-file-screen/operations-screen/operations-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/patient-info-screen/patient-info-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/tests-screen/tests-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/view-all-info-screen/view-all-info-screen.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -82,6 +83,10 @@ class _ClinicalFileScreenState extends State<ClinicalFileScreen> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => Navigator.pushNamed(context, ViewAllInfoScreen.route),
+        label: Text('عرض الملف كامل'),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:Capsule/models/test.dart';
 import 'package:Capsule/providers/tests-provider.dart';
 import 'package:Capsule/screens/clinical-file-screen/tests-screen/tests-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/view-all-info-screen/view-all-info-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +42,9 @@ class DeleteTestDialog extends StatelessWidget {
                     ).deleteTest(test.id!);
                     Navigator.popUntil(
                       context,
-                      (route) => route.settings.name == TestsScreen.route,
+                      (route) =>
+                          route.settings.name == TestsScreen.route ||
+                          route.settings.name == ViewAllInfoScreen.route,
                     );
                   },
                   child: Text('نعم', style: TextStyle(color: Colors.white)),

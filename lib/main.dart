@@ -18,6 +18,7 @@ import 'package:Capsule/screens/clinical-file-screen/patient-info-screen/add-pat
 import 'package:Capsule/screens/clinical-file-screen/patient-info-screen/patient-info-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/tests-screen/add-test-screen/add-test-screen.dart';
 import 'package:Capsule/screens/clinical-file-screen/tests-screen/tests-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/view-all-info-screen/view-all-info-screen.dart';
 import 'package:Capsule/screens/landing/landing-screen.dart';
 import 'package:Capsule/screens/main-screen/main-screen.dart';
 import 'package:Capsule/screens/reminder-screen/addReminderScreen/addReminderScreen.dart';
@@ -116,6 +117,7 @@ class _MyAppState extends State<MyApp> {
           AddReminderScreen.route: (_) => AddReminderScreen(),
           ClinicalFileScreen.route: (_) => ClinicalFileScreen(),
           LandingScreen.route: (_) => LandingScreen(),
+          ViewAllInfoScreen.route: (_) => ViewAllInfoScreen(),
           PatientInfoScreen.route: (_) => PatientInfoScreen(),
           AddPatientInfoScreen.route: (_) => AddPatientInfoScreen(),
           IllnessesScreen.route: (_) => IllnessesScreen(),

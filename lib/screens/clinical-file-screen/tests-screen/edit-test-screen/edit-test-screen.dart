@@ -6,6 +6,7 @@ import 'package:Capsule/screens/clinical-file-screen/medicine/add-medicine-scree
 import 'package:Capsule/screens/clinical-file-screen/tests-screen/components/add-attachment-button.dart';
 import 'package:Capsule/screens/clinical-file-screen/tests-screen/components/file-card.dart';
 import 'package:Capsule/screens/clinical-file-screen/tests-screen/tests-screen.dart';
+import 'package:Capsule/screens/clinical-file-screen/view-all-info-screen/view-all-info-screen.dart';
 import 'package:Capsule/screens/components/curved-container.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -119,7 +120,6 @@ class _EditTestScreenState extends State<EditTestScreen> {
                             MaterialButton(
                               onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
-                                  print(dateTime);
                                   Provider.of<TestsProvider>(
                                     context,
                                     listen: false,
@@ -135,7 +135,9 @@ class _EditTestScreenState extends State<EditTestScreen> {
                                     context,
                                     (route) =>
                                         route.settings.name ==
-                                        TestsScreen.route,
+                                            TestsScreen.route ||
+                                        route.settings.name ==
+                                            ViewAllInfoScreen.route,
                                   );
                                 }
                               },

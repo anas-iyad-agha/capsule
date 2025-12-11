@@ -92,7 +92,7 @@ class _PatientInfoScreenState extends State<PatientInfoScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(Icons.person_outline, size: width / 2),
+                      Icon(Icons.person_outline, size: width / 3),
                       Text(
                         provider.patientInfo!.fullName,
                         style: Theme.of(context).textTheme.titleLarge,
