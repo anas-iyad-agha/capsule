@@ -4,19 +4,10 @@ a research project for a pharmacy app
 
 ## features
 
-- DDI (drug-drug interaction): check if 2 drugs.
-- patient file: a collection of medical reports and sick leaves for the patient.
-- medicine tracker: keeping track of medicine and get notified when it's time to take them.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- clinical file: contians all info needed about the patient:
+  - patient info contians personal information.
+  - diseases contians diseases that the patient has.
+  - operations contians operations that the patient has went throught.
+  - tests contians all tests have been made for the patient.
+  - meds contians all meds that the patient is taking or have been taking previusly.
+- reminders: add reminders for meds added in your clinical file.
