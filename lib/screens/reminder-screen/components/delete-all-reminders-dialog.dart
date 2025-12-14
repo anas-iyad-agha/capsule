@@ -1,4 +1,4 @@
-import 'package:Capsule/providers/medicineReminderProvider.dart';
+import 'package:capsule/providers/medicineReminderProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

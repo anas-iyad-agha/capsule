@@ -1,9 +1,9 @@
 import 'dart:collection';
 import 'dart:convert';
 
-import 'package:Capsule/local-db/localDB.dart';
-import 'package:Capsule/models/medicine.dart';
-import 'package:Capsule/models/reminder.dart';
+import 'package:capsule/local-db/localDB.dart';
+import 'package:capsule/models/medicine.dart';
+import 'package:capsule/models/reminder.dart';
 import 'package:alarm/alarm.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';

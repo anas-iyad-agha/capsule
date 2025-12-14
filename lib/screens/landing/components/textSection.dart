@@ -1,46 +1,39 @@
-import 'package:Capsule/theme.dart';
+import 'package:capsule/theme.dart';
 import 'package:flutter/material.dart';
 
+// ==================== TextSection (محسّنة) ====================
 class TextSection extends StatelessWidget {
   final String title;
   final String paragraph;
+
   const TextSection(this.title, this.paragraph, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    final defaultPadding = MediaQuery.of(context).size.width / 20;
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: defaultPadding),
-      child: Row(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            /*1*/
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    color: MyColors.lightWhite,
-                    letterSpacing: 0.2,
-                    wordSpacing: 0.5,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  paragraph,
-                  softWrap: true,
-                  textAlign: TextAlign.justify,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    wordSpacing: 0.5,
-                    letterSpacing: 0.2,
-                    color: MyColors.darkGray,
-                  ),
-                ),
-              ],
+          Text(
+            title,
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+              color: MyColors.white,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0.3,
+              fontSize: 24,
+            ),
+          ),
+          const SizedBox(height: 12),
+          Text(
+            paragraph,
+            softWrap: true,
+            textAlign: TextAlign.justify,
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              color: MyColors.white.withOpacity(0.85),
+              fontWeight: FontWeight.w500,
+              height: 1.7,
+              fontSize: 15,
             ),
           ),
         ],

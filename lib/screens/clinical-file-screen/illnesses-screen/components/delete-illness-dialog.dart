@@ -1,7 +1,7 @@
-import 'package:Capsule/models/illness.dart';
-import 'package:Capsule/providers/illnesses-provider.dart';
-import 'package:Capsule/screens/clinical-file-screen/illnesses-screen/illnesses-screen.dart';
-import 'package:Capsule/screens/clinical-file-screen/view-all-info-screen/view-all-info-screen.dart';
+import 'package:capsule/models/illness.dart';
+import 'package:capsule/providers/illnesses-provider.dart';
+import 'package:capsule/screens/clinical-file-screen/illnesses-screen/illnesses-screen.dart';
+import 'package:capsule/screens/clinical-file-screen/view-all-info-screen/view-all-info-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

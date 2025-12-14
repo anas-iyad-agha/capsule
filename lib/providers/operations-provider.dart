@@ -1,5 +1,5 @@
-import 'package:Capsule/local-db/localDB.dart';
-import 'package:Capsule/models/operation.dart';
+import 'package:capsule/local-db/localDB.dart';
+import 'package:capsule/models/operation.dart';
 import 'package:flutter/material.dart';
 
 class OperationsProvider with ChangeNotifier {

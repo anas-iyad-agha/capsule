@@ -27,6 +27,8 @@ class Medicine {
     endDate: DateTime.parse(json['end_date']),
   );
 
+  get dosage => null;
+
   Map<String, dynamic> toJson() => {
     'id': id,
     'name': name,

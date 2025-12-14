@@ -1,7 +1,7 @@
-import 'package:Capsule/models/test.dart';
-import 'package:Capsule/providers/tests-provider.dart';
-import 'package:Capsule/screens/clinical-file-screen/tests-screen/tests-screen.dart';
-import 'package:Capsule/screens/clinical-file-screen/view-all-info-screen/view-all-info-screen.dart';
+import 'package:capsule/models/test.dart';
+import 'package:capsule/providers/tests-provider.dart';
+import 'package:capsule/screens/clinical-file-screen/tests-screen/tests-screen.dart';
+import 'package:capsule/screens/clinical-file-screen/view-all-info-screen/view-all-info-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';

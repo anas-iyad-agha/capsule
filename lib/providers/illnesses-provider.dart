@@ -1,5 +1,5 @@
-import 'package:Capsule/local-db/localDB.dart';
-import 'package:Capsule/models/illness.dart';
+import 'package:capsule/local-db/localDB.dart';
+import 'package:capsule/models/illness.dart';
 import 'package:flutter/material.dart';
 
 class IllnessesProvider with ChangeNotifier {

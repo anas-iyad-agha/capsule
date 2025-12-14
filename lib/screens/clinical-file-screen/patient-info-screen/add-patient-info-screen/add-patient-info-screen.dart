@@ -1,8 +1,9 @@
-import 'package:Capsule/models/patient-info.dart';
-import 'package:Capsule/providers/patien-info-probider.dart';
-import 'package:Capsule/screens/clinical-file-screen/medicine/add-medicine-screen/components/custom_input.dart';
-import 'package:Capsule/screens/components/curved-container.dart';
-import 'package:Capsule/screens/components/custom-drop-down-menu.dart';
+import 'package:capsule/models/patient-info.dart';
+import 'package:capsule/providers/patien-info-probider.dart';
+import 'package:capsule/screens/clinical-file-screen/medicine/add-medicine-screen/components/custom_input.dart';
+import 'package:capsule/screens/components/curved-container.dart';
+import 'package:capsule/screens/components/custom-drop-down-menu.dart';
+import 'package:capsule/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -50,8 +51,8 @@ class _AddPatientInfoScreenState extends State<AddPatientInfoScreen> {
           CurvedContainer(
             Form(
               key: _formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+              child: ListView(
+                padding: const EdgeInsets.all(16),
                 children: [
                   CustomInput(
                     controller: fullNameController,
@@ -60,6 +61,8 @@ class _AddPatientInfoScreenState extends State<AddPatientInfoScreen> {
                         val!.isEmpty ? 'الرجاء ادخال الاسم' : null,
                     labelText: 'الاسم الثلاثي',
                   ),
+                  const SizedBox(height: 16),
+
                   CustomInput(
                     controller: jobController,
                     keyboardType: TextInputType.name,
@@ -67,42 +70,32 @@ class _AddPatientInfoScreenState extends State<AddPatientInfoScreen> {
                         val!.isEmpty ? 'الرجاء ادخال الاسم' : null,
                     labelText: 'الوظيفة',
                   ),
+                  const SizedBox(height: 16),
+
                   Row(
                     children: [
                       CustomDropDownMenu<bool>(
-                        width: width / 2 - 4 - width / 20,
+                        width: (width / 2) - 56,
                         initialSelection: isMale,
                         label: 'الجنس',
                         onSelected: (val) {
                           if (val != null) {
-                            setState(() {
-                              isMale = val;
-                            });
+                            setState(() => isMale = val);
                           }
                         },
-                        dropDownMenuEntries: [
+                        dropDownMenuEntries: const [
                           DropdownMenuEntry(value: true, label: 'ذكر'),
                           DropdownMenuEntry(value: false, label: 'أنثى'),
                         ],
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 12),
                       CustomDropDownMenu<String>(
-                        width: width / 2 - 4 - width / 20,
+                        width: (width / 2) - 30,
                         initialSelection: familyStatus,
                         label: 'الحالة الاجتماعية',
                         onSelected: (val) {
                           if (val != null) {
-                            setState(() {
-                              familyStatus = val;
-                            });
-                          }
-                        },
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'الرجاء اختيار الحالة الاجتماعية';
-                          }
-                          if (!familyStatusOptions.contains(value)) {
-                            return 'الرجاء اختيار حالة من القائمة';
+                            setState(() => familyStatus = val);
                           }
                         },
                         dropDownMenuEntries: [
@@ -112,6 +105,8 @@ class _AddPatientInfoScreenState extends State<AddPatientInfoScreen> {
                       ),
                     ],
                   ),
+                  const SizedBox(height: 16),
+
                   Row(
                     children: [
                       Expanded(
@@ -120,29 +115,25 @@ class _AddPatientInfoScreenState extends State<AddPatientInfoScreen> {
                           keyboardType: TextInputType.number,
                           suffixText: 'Kg',
                           labelText: 'الوزن',
-                          validator: (val) => val == null || val.isEmpty
-                              ? 'الرجاء ادخال الوزن'
-                              : null,
                         ),
                       ),
-                      SizedBox(width: 12),
+                      const SizedBox(width: 12),
                       Expanded(
                         child: CustomInput(
                           controller: heightController,
                           keyboardType: TextInputType.number,
                           suffixText: 'Cm',
                           labelText: 'الطول',
-                          validator: (val) => val == null || val.isEmpty
-                              ? 'الرجاء ادخال الطول'
-                              : null,
                         ),
                       ),
                     ],
                   ),
+                  const SizedBox(height: 16),
+
                   Row(
                     children: [
                       CustomDropDownMenu(
-                        width: width / 2 - 4 - width / 20,
+                        width: width / 2 - 4 - width / 10,
                         controller: bloodTypeController,
                         label: 'فصيلة الدم',
                         dropDownMenuEntries: [
@@ -152,77 +143,150 @@ class _AddPatientInfoScreenState extends State<AddPatientInfoScreen> {
                               label: bloodType,
                             ),
                         ],
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'الرجاء اختيار فصيلة الدم';
-                          }
-                          if (!bloodTypes.contains(value)) {
-                            return 'الرجاء اختيار فصيلة دم من القائمة';
-                          }
-                        },
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 12),
                       SizedBox(
-                        width: width / 2 - 4 - width / 20,
+                        width: width / 2 - 4 - width / 10,
                         child: CheckboxListTile(
-                          title: Text('مدخن'),
+                          contentPadding: EdgeInsets.zero,
+                          title: const Text('مدخن'),
                           value: isSmoking,
                           onChanged: (val) {
                             if (val != null) {
-                              setState(() {
-                                isSmoking = val;
-                              });
+                              setState(() => isSmoking = val);
                             }
                           },
                         ),
                       ),
                     ],
                   ),
+                  const SizedBox(height: 16),
+
                   CustomInput(
                     controller: allergiesController,
                     labelText: 'الحساسيات',
                   ),
+                  const SizedBox(height: 24),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      MaterialButton(
-                        color: Colors.cyan,
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            Provider.of<PatientInfoProvider>(
-                              context,
-                              listen: false,
-                            ).saveInfo(
-                              PatientInfo(
-                                fullName: fullNameController.text,
-                                job: jobController.text,
-                                isMale: isMale,
-                                familyStatus: familyStatus,
-                                weight: double.parse(weightController.text),
-                                height: double.parse(heightController.text),
-                                bloodType: bloodTypeController.text,
-                                allergies: allergiesController.text,
-                                isSmoking: isSmoking,
-                              ),
-                            );
-                            Navigator.pop(context);
-                          }
-                        },
-                        child: Text(
-                          'اضافة',
-                          style: TextStyle(color: Colors.white),
+                      // زر الحفظ
+                      Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              MyColors.primaryBlue,
+                              MyColors.primaryBlue.withOpacity(0.8),
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: MyColors.primaryBlue.withOpacity(0.3),
+                              blurRadius: 10,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
                         ),
-                      ),
-                      OutlinedButton(
-                        onPressed: () => Navigator.pop(context),
-                        style: ButtonStyle(
-                          side: WidgetStatePropertyAll(
-                            BorderSide(color: Colors.redAccent),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () {
+                              if (_formKey.currentState!.validate()) {
+                                Provider.of<PatientInfoProvider>(
+                                  context,
+                                  listen: false,
+                                ).saveInfo(
+                                  PatientInfo(
+                                    fullName: fullNameController.text,
+                                    job: jobController.text,
+                                    isMale: isMale,
+                                    familyStatus: familyStatus,
+                                    weight: double.parse(weightController.text),
+                                    height: double.parse(heightController.text),
+                                    bloodType: bloodTypeController.text,
+                                    allergies: allergiesController.text,
+                                    isSmoking: isSmoking,
+                                  ),
+                                );
+                                Navigator.pop(context);
+                              }
+                            },
+                            borderRadius: BorderRadius.circular(12),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 28,
+                                vertical: 14,
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Icon(
+                                    Icons.save_rounded,
+                                    color: MyColors.white,
+                                    size: 20,
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    'حفظ التغييرات',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelLarge
+                                        ?.copyWith(
+                                          color: MyColors.white,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
-                        child: Text(
-                          'الغاء',
-                          style: TextStyle(color: Colors.redAccent),
+                      ),
+
+                      // زر الإلغاء
+                      Container(
+                        decoration: BoxDecoration(
+                          color: MyColors.lightRed.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: MyColors.lightRed.withOpacity(0.3),
+                            width: 1.5,
+                          ),
+                        ),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () => Navigator.pop(context),
+                            borderRadius: BorderRadius.circular(12),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 28,
+                                vertical: 14,
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Icon(
+                                    Icons.cancel_rounded,
+                                    color: MyColors.lightRed,
+                                    size: 20,
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    'إلغاء',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelLarge
+                                        ?.copyWith(
+                                          color: MyColors.lightRed,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ],

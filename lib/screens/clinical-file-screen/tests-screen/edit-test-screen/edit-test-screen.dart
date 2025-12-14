@@ -1,13 +1,13 @@
 import 'dart:io';
 
-import 'package:Capsule/models/test.dart';
-import 'package:Capsule/providers/tests-provider.dart';
-import 'package:Capsule/screens/clinical-file-screen/medicine/add-medicine-screen/components/custom_input.dart';
-import 'package:Capsule/screens/clinical-file-screen/tests-screen/components/add-attachment-button.dart';
-import 'package:Capsule/screens/clinical-file-screen/tests-screen/components/file-card.dart';
-import 'package:Capsule/screens/clinical-file-screen/tests-screen/tests-screen.dart';
-import 'package:Capsule/screens/clinical-file-screen/view-all-info-screen/view-all-info-screen.dart';
-import 'package:Capsule/screens/components/curved-container.dart';
+import 'package:capsule/models/test.dart';
+import 'package:capsule/providers/tests-provider.dart';
+import 'package:capsule/screens/clinical-file-screen/medicine/add-medicine-screen/components/custom_input.dart';
+import 'package:capsule/screens/clinical-file-screen/tests-screen/components/add-attachment-button.dart';
+import 'package:capsule/screens/clinical-file-screen/tests-screen/components/file-card.dart';
+import 'package:capsule/screens/clinical-file-screen/tests-screen/tests-screen.dart';
+import 'package:capsule/screens/clinical-file-screen/view-all-info-screen/view-all-info-screen.dart';
+import 'package:capsule/screens/components/curved-container.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

@@ -1,7 +1,7 @@
-import 'package:Capsule/models/illness.dart';
-import 'package:Capsule/screens/clinical-file-screen/illnesses-screen/components/delete-illness-dialog.dart';
-import 'package:Capsule/screens/clinical-file-screen/illnesses-screen/edit-illness-screen/edit-illness-screen.dart';
-import 'package:Capsule/screens/components/curved-container.dart';
+import 'package:capsule/models/illness.dart';
+import 'package:capsule/screens/clinical-file-screen/illnesses-screen/components/delete-illness-dialog.dart';
+import 'package:capsule/screens/clinical-file-screen/illnesses-screen/edit-illness-screen/edit-illness-screen.dart';
+import 'package:capsule/screens/components/curved-container.dart';
 import 'package:flutter/material.dart';
 
 class ViewIllnessScreen extends StatelessWidget {

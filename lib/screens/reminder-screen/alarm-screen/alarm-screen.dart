@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:Capsule/models/medicine.dart';
-import 'package:Capsule/models/reminder.dart';
-import 'package:Capsule/providers/medicineReminderProvider.dart';
+import 'package:capsule/models/medicine.dart';
+import 'package:capsule/models/reminder.dart';
+import 'package:capsule/providers/medicineReminderProvider.dart';
 import 'package:alarm/alarm.dart';
 import 'package:alarm/utils/alarm_set.dart';
 import 'package:flutter/material.dart';

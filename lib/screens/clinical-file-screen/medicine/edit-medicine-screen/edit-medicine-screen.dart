@@ -1,9 +1,9 @@
-import 'package:Capsule/models/medicine.dart';
-import 'package:Capsule/providers/medicineReminderProvider.dart';
-import 'package:Capsule/screens/clinical-file-screen/medicine/add-medicine-screen/components/custom_input.dart';
-import 'package:Capsule/screens/clinical-file-screen/medicine/medicine-screen.dart';
-import 'package:Capsule/screens/clinical-file-screen/view-all-info-screen/view-all-info-screen.dart';
-import 'package:Capsule/screens/components/curved-container.dart';
+import 'package:capsule/models/medicine.dart';
+import 'package:capsule/providers/medicineReminderProvider.dart';
+import 'package:capsule/screens/clinical-file-screen/medicine/add-medicine-screen/components/custom_input.dart';
+import 'package:capsule/screens/clinical-file-screen/medicine/medicine-screen.dart';
+import 'package:capsule/screens/clinical-file-screen/view-all-info-screen/view-all-info-screen.dart';
+import 'package:capsule/screens/components/curved-container.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';

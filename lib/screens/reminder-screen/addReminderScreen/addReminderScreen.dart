@@ -1,7 +1,8 @@
-import 'package:Capsule/models/medicine.dart';
-import 'package:Capsule/providers/medicineReminderProvider.dart';
-import 'package:Capsule/screens/clinical-file-screen/medicine/add-medicine-screen/components/custom_input.dart';
-import 'package:Capsule/screens/reminder-screen/addReminderScreen/components/customDropDownMenu.dart';
+import 'package:capsule/models/medicine.dart';
+import 'package:capsule/providers/medicineReminderProvider.dart';
+import 'package:capsule/screens/clinical-file-screen/medicine/add-medicine-screen/components/custom_input.dart';
+import 'package:capsule/screens/reminder-screen/addReminderScreen/components/customDropDownMenu.dart';
+import 'package:capsule/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -25,215 +26,220 @@ class _AddReminderScreenState extends State<AddReminderScreen> {
 
   Medicine? savedSelectedMedicine;
 
-  DateTimeRange<DateTime>? dateRange;
+  DateTimeRange? dateRange;
   TimeOfDay? time;
 
   _selectDateRange() async {
-    dateRange = await showDateRangePicker(
+    final selectedRange = await showDateRangePicker(
       context: context,
       firstDate: DateTime.now(),
       lastDate: DateTime(2050),
       builder: (BuildContext context, Widget? child) {
-        // Return a new Theme for the date picker only
         return Theme(
-          // Copy the current theme and override specific properties
           data: Theme.of(context).copyWith(
-            scaffoldBackgroundColor: Colors.white,
-            // Define a light color scheme to ensure default text colors are dark and visible
+            scaffoldBackgroundColor: MyColors.white,
             colorScheme: const ColorScheme.light(
-              primary: Colors.blue, // Header background color (usually primary)
-              onPrimary: Colors.white, // Text color on the header
-              surface: Colors.white, // The main calendar grid background color
-              onSurface: Colors.black, // Day text colors
+              primary: MyColors.primaryBlue,
+              onPrimary: MyColors.white,
+              surface: MyColors.white,
+              onSurface: MyColors.darkNavyBlue,
             ),
-            // For Material 3, specifically set the background color and remove any tint overlay
             datePickerTheme: const DatePickerThemeData(
-              backgroundColor: Colors
-                  .white, // Explicitly set the dialog body background to white
-              surfaceTintColor: Colors
-                  .transparent, // Prevents a tint from the primary color from appearing
+              backgroundColor: MyColors.white,
+              surfaceTintColor: Colors.transparent,
             ),
           ),
           child: child!,
         );
       },
     );
-    setState(() {});
+    if (selectedRange != null) {
+      setState(() {
+        dateRange = selectedRange;
+      });
+    }
   }
 
   void _selectTime() async {
     final currentTime = TimeOfDay.now();
-    time = await showTimePicker(context: context, initialTime: currentTime);
-    setState(() {});
+    final selectedTime = await showTimePicker(
+      context: context,
+      initialTime: currentTime,
+    );
+    if (selectedTime != null) {
+      setState(() {
+        time = selectedTime;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _medicineController.dispose();
+    _labelController.dispose();
+    _repeatController.dispose();
+    _hourlyRepeatController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('إضافة منبه')),
-      backgroundColor: Colors.white,
+      backgroundColor: MyColors.veryLightGray,
       body: Center(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(16.0),
           child: Form(
             key: _formKey,
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CustomDropdownMenu(
-                    controller: _medicineController,
-                    selectedMedicine: savedSelectedMedicine,
-                  ),
-                  const SizedBox(height: 24),
-                  GestureDetector(
-                    onTap: _selectDateRange,
-                    child: TextFormField(
-                      enabled: false,
-                      validator: (_) {
-                        if (dateRange == null) {
-                          return 'الرجاء اختيار النطاق الزمني';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        labelText: dateRange == null
-                            ? 'النطاق الزمني'
-                            : '${DateFormat.yMMMd('ar').format(dateRange!.start)} - ${DateFormat.yMMMd('ar').format(dateRange!.end)}',
-                        labelStyle: const TextStyle(color: Colors.black54),
-                        suffixIcon: const Icon(Icons.alarm),
-                        disabledBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  GestureDetector(
-                    onTap: _selectTime,
-                    child: TextFormField(
-                      enabled: false,
-                      validator: (_) {
-                        if (time == null) {
-                          return 'الرجاء اختيار الوقت';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        labelText: time == null
-                            ? 'الوقت'
-                            : TimeOfDay(
-                                hour: time!.hour,
-                                minute: time!.minute,
-                              ).format(context),
-                        labelStyle: const TextStyle(color: Colors.black54),
-                        suffixIcon: const Icon(Icons.alarm),
-                        disabledBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: CustomInput(
-                          keyboardType: TextInputType.number,
-                          controller: _repeatController,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly,
-                          ],
-                          suffixText: 'يوم/أيام',
-                          labelText: 'التكرار',
-                          validator: (val) {
-                            if (val!.isEmpty) {
-                              return 'الرجاء ملئ التكرار';
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                      SizedBox(width: 8),
-                      Expanded(
-                        child: CustomInput(
-                          keyboardType: TextInputType.number,
-                          controller: _hourlyRepeatController,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly,
-                          ],
-                          suffixText: 'ساعة/ساعات',
-                          labelText: 'التكرار',
-                          validator: (val) {
-                            if (val != null &&
-                                double.tryParse(val) != null &&
-                                double.parse(val) > 24) {
-                              return 'يجب ادخال عدد اقل من 24';
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 24),
-                  CustomInput(labelText: 'وصف', controller: _labelController),
-                  const SizedBox(height: 24),
-                  Consumer<MedicineReminderProvider>(
-                    builder: (_, provider, _) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          MaterialButton(
-                            onPressed: () async {
-                              provider.medicines.forEach((element) {
-                                if (element.name == _medicineController.text) {
-                                  setState(() {
-                                    savedSelectedMedicine = element;
-                                  });
-                                }
-                              });
-                              if (_formKey.currentState!.validate()) {
-                                var provider =
-                                    Provider.of<MedicineReminderProvider>(
-                                      context,
-                                      listen: false,
-                                    );
-                                Navigator.of(context).pop();
-                                await provider.registerReminders(
-                                  _labelController.text,
-                                  savedSelectedMedicine!,
-                                  time!,
-                                  dateRange!,
-                                  int.parse(_repeatController.text),
-                                  int.tryParse(_hourlyRepeatController.text) ??
-                                      23,
-                                );
-                                await provider.fetchData();
-                              }
-                            },
-                            color: Colors.cyan,
-                            textColor: Colors.white,
-                            child: Text('اضافة'),
-                          ),
-                          OutlinedButton(
-                            onPressed: () => Navigator.pop(context),
-                            style: ButtonStyle(
-                              side: WidgetStatePropertyAll(
-                                BorderSide(color: Colors.redAccent),
-                              ),
-                            ),
-                            child: Text(
-                              'الغاء',
-                              style: TextStyle(color: Colors.redAccent),
-                            ),
-                          ),
-                        ],
-                      );
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // اختيار الدواء
+                CustomDropdownMenu(
+                  controller: _medicineController,
+                  selectedMedicine: savedSelectedMedicine,
+                ),
+                const SizedBox(height: 24),
+
+                // اختيار النطاق الزمني
+                GestureDetector(
+                  onTap: _selectDateRange,
+                  child: TextFormField(
+                    enabled: false,
+                    validator: (_) {
+                      if (dateRange == null) {
+                        return 'الرجاء اختيار النطاق الزمني';
+                      }
+                      return null;
                     },
+                    decoration: InputDecoration(
+                      labelText: dateRange == null
+                          ? 'النطاق الزمني'
+                          : '${DateFormat.yMMMd('ar').format(dateRange!.start)} - ${DateFormat.yMMMd('ar').format(dateRange!.end)}',
+                      prefixIcon: const Icon(Icons.calendar_today_rounded),
+                    ),
                   ),
-                ],
-              ),
+                ),
+                const SizedBox(height: 16),
+
+                // اختيار الوقت
+                GestureDetector(
+                  onTap: _selectTime,
+                  child: TextFormField(
+                    enabled: false,
+                    validator: (_) {
+                      if (time == null) {
+                        return 'الرجاء اختيار الوقت';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      labelText: time == null ? 'الوقت' : time!.format(context),
+                      prefixIcon: const Icon(Icons.schedule_rounded),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 24),
+
+                // التكرار اليومي والساعي
+                Row(
+                  children: [
+                    Expanded(
+                      child: CustomInput(
+                        keyboardType: TextInputType.number,
+                        controller: _repeatController,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
+                        suffixText: 'يوم',
+                        labelText: 'التكرار اليومي',
+                        validator: (val) {
+                          if (val!.isEmpty) {
+                            return 'مطلوب';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: CustomInput(
+                        keyboardType: TextInputType.number,
+                        controller: _hourlyRepeatController,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
+                        suffixText: 'ساعة',
+                        labelText: 'التكرار الساعي',
+                        validator: (val) {
+                          if (val != null &&
+                              double.tryParse(val) != null &&
+                              double.parse(val) > 24) {
+                            return 'أقل من 24';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 24),
+
+                // الوصف
+                CustomInput(
+                  labelText: 'وصف أو ملاحظة',
+                  controller: _labelController,
+                  maxLines: 3,
+                ),
+                const SizedBox(height: 32),
+
+                // أزرار الحفظ والإلغاء
+                Consumer<MedicineReminderProvider>(
+                  builder: (_, provider, __) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        ElevatedButton.icon(
+                          onPressed: () async {
+                            provider.medicines.forEach((element) {
+                              if (element.name == _medicineController.text) {
+                                setState(() {
+                                  savedSelectedMedicine = element;
+                                });
+                              }
+                            });
+                            if (_formKey.currentState!.validate()) {
+                              Navigator.of(context).pop();
+                              await provider.registerReminders(
+                                _labelController.text,
+                                savedSelectedMedicine!,
+                                time!,
+                                dateRange!,
+                                int.parse(_repeatController.text),
+                                int.tryParse(_hourlyRepeatController.text) ??
+                                    23,
+                              );
+                              await provider.fetchData();
+                            }
+                          },
+                          icon: const Icon(Icons.check_rounded),
+                          label: const Text('إضافة'),
+                        ),
+                        OutlinedButton.icon(
+                          onPressed: () => Navigator.pop(context),
+                          icon: const Icon(Icons.close_rounded),
+                          label: const Text('إلغاء'),
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: MyColors.lightRed,
+                            side: const BorderSide(color: MyColors.lightRed),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ],
             ),
           ),
         ),

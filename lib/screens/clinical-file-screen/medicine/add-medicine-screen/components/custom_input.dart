@@ -1,4 +1,4 @@
-import 'package:Capsule/theme.dart';
+import 'package:capsule/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -9,6 +9,8 @@ class CustomInput extends StatelessWidget {
     this.initialValue,
     this.suffixText,
     this.maxLines,
+    this.hintText,
+    this.prefixIcon,
     this.keyboardType,
     this.validator,
     this.onSaved,
@@ -21,6 +23,8 @@ class CustomInput extends StatelessWidget {
   final String? labelText;
   final String? suffixText;
   final String? initialValue;
+  final String? hintText;
+  final Widget? prefixIcon;
   final int? maxLines;
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
@@ -39,11 +43,14 @@ class CustomInput extends StatelessWidget {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: keyboardType,
       maxLines: maxLines,
+
       cursorColor: Theme.of(context).primaryColor,
       decoration: InputDecoration(
         border: border,
         suffixText: suffixText,
         labelText: labelText,
+        hintText: hintText,
+        prefixIcon: prefixIcon,
         errorStyle: const TextStyle(color: MyColors.lightRed),
       ),
       validator: validator,

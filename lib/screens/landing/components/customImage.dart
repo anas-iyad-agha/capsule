@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 
 class CustomImage extends StatelessWidget {
-  const CustomImage({Key? key, required this.imagePath}) : super(key: key);
   final String imagePath;
+  final double? width;
+  final double? height;
+  final double opacity;
+
+  const CustomImage({
+    required this.imagePath,
+    this.width,
+    this.height,
+    this.opacity = 0.15,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final defaultPadding = MediaQuery. of(context). size. width / 20;
-
-    return Row(
-      children: [
-        Expanded(
-          child:
-          ConstrainedBox(
-            constraints: BoxConstraints(
-              maxWidth: MediaQuery. of(context). size. width*0.9,
-              minWidth: MediaQuery. of(context). size. width*0.9,
-            ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: defaultPadding),
-              child: Image.asset(imagePath, fit: BoxFit.fill),
-            ),
-          ),
-        )
-      ],
+    return Opacity(
+      opacity: opacity,
+      child: Image.asset(
+        imagePath,
+        width: width,
+        height: height,
+        fit: BoxFit.cover,
+      ),
     );
   }
 }

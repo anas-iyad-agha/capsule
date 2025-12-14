@@ -1,7 +1,7 @@
-import 'package:Capsule/models/operation.dart';
-import 'package:Capsule/screens/clinical-file-screen/operations-screen/components/delete-operation-dialog.dart';
-import 'package:Capsule/screens/clinical-file-screen/operations-screen/edit-operation-screen/edit-operation-screen.dart';
-import 'package:Capsule/screens/components/curved-container.dart';
+import 'package:capsule/models/operation.dart';
+import 'package:capsule/screens/clinical-file-screen/operations-screen/components/delete-operation-dialog.dart';
+import 'package:capsule/screens/clinical-file-screen/operations-screen/edit-operation-screen/edit-operation-screen.dart';
+import 'package:capsule/screens/components/curved-container.dart';
 import 'package:flutter/material.dart';
 
 class ViewOperationScreen extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:Capsule/local-db/localDB.dart';
-import 'package:Capsule/models/test.dart';
+import 'package:capsule/local-db/localDB.dart';
+import 'package:capsule/models/test.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';

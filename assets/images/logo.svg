@@ -1,0 +1,45 @@
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path id="textCircleTop" d="M 70,250 A 180,180 0 0,1 430,250" />
+    <path id="textCircleBottom" d="M 50,250 A 200,200 0 0,0 450,250" />
+  </defs>
+
+  <circle cx="250" cy="250" r="245" fill="#006893" />
+  
+  <circle cx="250" cy="250" r="205" fill="none" stroke="white" stroke-width="5" />
+
+  <path d="M 100,250 A 150,150 0 0,1 400,250 L 400,250 L 100,250 Z" fill="#eebf00" /> <path d="M 100,250 A 150,150 0 0,0 400,250 L 400,250 L 100,250 Z" fill="#005b82" /> <path d="M 250,250 L 250,110 M 250,250 L 300,120 M 250,250 L 350,150 M 250,250 L 200,120 M 250,250 L 150,150" stroke="white" stroke-width="8" stroke-linecap="round" />
+
+  <g transform="translate(140, 160) scale(0.9)">
+    <rect x="20" y="20" width="110" height="150" rx="10" ry="10" fill="white" stroke="#00405c" stroke-width="6" />
+    <path d="M 50,15 L 100,15 A 5,5 0 0,1 105,20 L 105,40 L 45,40 L 45,20 A 5,5 0 0,1 50,15" fill="#006893" />
+    <circle cx="75" cy="25" r="5" fill="white" />
+    <path d="M 35,90 L 55,90 L 65,60 L 85,110 L 95,90 L 115,90" fill="none" stroke="#eebf00" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+    <line x1="40" y1="120" x2="110" y2="120" stroke="#006893" stroke-width="4" stroke-linecap="round"/>
+    <line x1="40" y1="140" x2="90" y2="140" stroke="#006893" stroke-width="4" stroke-linecap="round"/>
+
+    <g transform="translate(110, 80)">
+       <rect x="0" y="20" width="60" height="70" rx="10" fill="white" stroke="#00405c" stroke-width="5"/>
+       <rect x="5" y="0" width="50" height="20" fill="#eebf00" stroke="#00405c" stroke-width="4"/>
+       <rect x="20" y="45" width="20" height="6" rx="2" fill="#006893"/>
+       <rect x="27" y="38" width="6" height="20" rx="2" fill="#006893"/>
+       
+       <path d="M 60,10 C 60,10 75,10 75,30 C 75,50 85,55 85,55 L 50,55 C 50,55 60,50 60,30 Z" fill="#eebf00" stroke="#00405c" stroke-width="3"/>
+       <circle cx="67.5" cy="60" r="4" fill="#eebf00" stroke="#00405c" stroke-width="2"/>
+    </g>
+  </g>
+
+  <text fill="white" font-family="Arial, sans-serif" font-weight="bold" font-size="42" letter-spacing="4">
+    <textPath href="#textCircleTop" startOffset="50%" text-anchor="middle">
+      IUST MEDI-FILE
+    </textPath>
+  </text>
+
+  <text x="250" y="410" fill="white" font-family="Arial, sans-serif" font-weight="bold" font-size="28" text-anchor="middle" direction="rtl">
+    الملف السريري والتنبيهات الدوائية
+  </text>
+  
+  <text x="250" y="445" fill="#eebf00" font-family="Arial, sans-serif" font-weight="bold" font-size="22" text-anchor="middle">
+    CLINICAL FILE &amp; DRUG ALERTS
+  </text>
+</svg>

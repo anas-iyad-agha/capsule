@@ -1,9 +1,9 @@
-import 'package:Capsule/models/medicine.dart';
-import 'package:Capsule/screens/clinical-file-screen/medicine/components/delete-medicine-dialog.dart';
-import 'package:Capsule/screens/clinical-file-screen/medicine/edit-medicine-screen/edit-medicine-screen.dart';
-import 'package:Capsule/screens/clinical-file-screen/medicine/view-medicine-screen/components/info-card.dart';
-import 'package:Capsule/screens/components/curved-container.dart';
-import 'package:Capsule/theme.dart';
+import 'package:capsule/models/medicine.dart';
+import 'package:capsule/screens/clinical-file-screen/medicine/components/delete-medicine-dialog.dart';
+import 'package:capsule/screens/clinical-file-screen/medicine/edit-medicine-screen/edit-medicine-screen.dart';
+import 'package:capsule/screens/clinical-file-screen/medicine/view-medicine-screen/components/info-card.dart';
+import 'package:capsule/screens/components/curved-container.dart';
+import 'package:capsule/theme.dart';
 import 'package:flutter/material.dart';
 
 class ViewMedicineScreen extends StatelessWidget {
@@ -72,9 +72,27 @@ class ViewMedicineScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
-                  child: Image.asset(
-                    'assets/icons/pills.png',
+                  child: Container(
                     width: width / 2,
+                    height: width / 2,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          MyColors.accentTeal.withOpacity(0.2),
+                          MyColors.accentTeal.withOpacity(0.1),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        color: MyColors.accentTeal.withOpacity(0.3),
+                        width: 1.5,
+                      ),
+                    ),
+                    child: Icon(
+                      Icons.medication_rounded,
+                      color: MyColors.accentTeal,
+                      size: width / 3,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 32),

@@ -1,5 +1,5 @@
-import 'package:Capsule/providers/medicineReminderProvider.dart';
-import 'package:Capsule/screens/reminder-screen/components/reminderListItem.dart';
+import 'package:capsule/providers/medicineReminderProvider.dart';
+import 'package:capsule/screens/reminder-screen/components/reminderListItem.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,21 +24,60 @@ class _TodayScheduleState extends State<TodaySchedule> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(top: 32, left: 8, right: 8, bottom: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("جدول اليوم", style: Theme.of(context).textTheme.titleLarge),
+          Text(
+            "جدول اليوم",
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              color: const Color(0xFF1B3558),
+              fontWeight: FontWeight.w600,
+            ),
+          ),
           Expanded(
             child: Consumer<MedicineReminderProvider>(
               builder: (_, provider, _) {
                 if (provider.kEvents.isEmpty) {
-                  return const Center(
+                  return Center(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.notifications_off_outlined),
-                        Text('لا يوجد تنبيهات'),
+                        Container(
+                          padding: const EdgeInsets.all(18),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.95),
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                color: const Color(0xFF9EC9FF).withOpacity(0.4),
+                                blurRadius: 10,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          child: const Icon(
+                            Icons.notifications_off_outlined,
+                            size: 42,
+                            color: Color(0xFF3F8CFF),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          'لا يوجد تنبيهات اليوم',
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(
+                                color: const Color(0xFF1B3558),
+                                fontWeight: FontWeight.w600,
+                              ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          'سيتم عرض التنبيهات هنا عند إضافتها',
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(color: const Color(0xFF566E8A)),
+                          textAlign: TextAlign.center,
+                        ),
                       ],
                     ),
                   );

@@ -1,7 +1,7 @@
-import 'package:Capsule/models/reminder.dart';
-import 'package:Capsule/providers/medicineReminderProvider.dart';
-import 'package:Capsule/screens/components/curved-container.dart';
-import 'package:Capsule/screens/reminder-screen/components/reminderListItem.dart';
+import 'package:capsule/models/reminder.dart';
+import 'package:capsule/providers/medicineReminderProvider.dart';
+import 'package:capsule/screens/components/curved-container.dart';
+import 'package:capsule/screens/reminder-screen/components/reminderListItem.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -47,14 +47,14 @@ class _CalenderState extends State<Calender> {
             },
             eventLoader: provider.getEventsForDay,
             headerStyle: HeaderStyle(
-              formatButtonTextStyle: TextStyle(color: Colors.white),
+              formatButtonTextStyle: TextStyle(color: Colors.black),
               formatButtonDecoration: BoxDecoration(
-                border: Border.fromBorderSide(BorderSide(color: Colors.white)),
+                border: Border.fromBorderSide(BorderSide(color: Colors.black)),
                 borderRadius: BorderRadius.circular(12),
               ),
-              titleTextStyle: TextStyle(color: Colors.white),
-              rightChevronIcon: Icon(Icons.chevron_right, color: Colors.white),
-              leftChevronIcon: Icon(Icons.chevron_left, color: Colors.white),
+              titleTextStyle: TextStyle(color: Colors.black),
+              rightChevronIcon: Icon(Icons.chevron_right, color: Colors.black),
+              leftChevronIcon: Icon(Icons.chevron_left, color: Colors.black),
             ),
             calendarStyle: const CalendarStyle(
               selectedDecoration: BoxDecoration(
@@ -65,10 +65,10 @@ class _CalenderState extends State<Calender> {
                 color: Colors.lightBlueAccent,
                 shape: BoxShape.circle,
               ),
-              todayTextStyle: TextStyle(color: Colors.white),
+              todayTextStyle: TextStyle(color: Colors.black),
               selectedTextStyle: TextStyle(color: Colors.black),
-              defaultTextStyle: TextStyle(color: Colors.white),
-              weekendTextStyle: TextStyle(color: Colors.white),
+              defaultTextStyle: TextStyle(color: Colors.black),
+              weekendTextStyle: TextStyle(color: Colors.black),
             ),
             onDaySelected: provider.onDaySelected,
             onFormatChanged: (format) {
@@ -88,12 +88,38 @@ class _CalenderState extends State<Calender> {
           Consumer<MedicineReminderProvider>(
             builder: (_, provider, _) {
               if (provider.selectedDayEvents.isEmpty) {
-                return const Center(
+                return Center(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.notifications_off_outlined),
-                      Text('لايوجد تنبيعا'),
+                      Container(
+                        padding: const EdgeInsets.all(18),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.95),
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color(0xFF9EC9FF).withOpacity(0.4),
+                              blurRadius: 10,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: const Icon(
+                          Icons.notifications_off_outlined,
+                          size: 42,
+                          color: Color(0xFF3F8CFF),
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        'لا يوجد تنبيهات',
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(
+                              color: const Color(0xFF1B3558),
+                              fontWeight: FontWeight.w600,
+                            ),
+                      ),
                     ],
                   ),
                 );

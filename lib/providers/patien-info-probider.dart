@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:Capsule/models/patient-info.dart';
+import 'package:capsule/models/patient-info.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
